@@ -1,4 +1,4 @@
-# <Project Name> by Name
+# Project Name by Name
 
 ## Roster with roles
 
