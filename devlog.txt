@@ -5,3 +5,9 @@ P01 -- ArRESTed Development
 
 yuqingW -- 2021-12-07 20:44 
 Create repo and added files. 
+
+yuqingW -- 2021-12-08 22:00
+Design doc v0.
+
+elizaK -- 2021-12-09 15:25
+Updated the design doc with edits on frontend sitemap and database tables.
