@@ -5,3 +5,6 @@ P01 -- ArRESTed Development
 
 yuqingW -- 2021-12-07 20:44 
 Create repo and added files. 
+
+yuqingW -- 2021-12-08 22:00
+Design doc v0.
