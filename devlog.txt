@@ -11,3 +11,6 @@ Design doc v0.
 
 elizaK -- 2021-12-09 15:25
 Updated the design doc with edits on frontend sitemap and database tables.
+
+yuqingW -- 2021-12-09 18:27
+Updated design doc with clearer component map that shows the relationship between the files and moving the original description in the component map to the component parts.
