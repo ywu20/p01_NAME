@@ -5,6 +5,8 @@
 
 # set up stock database table
 import sqlite3
+import api
+import user
 DB_FILE = "discobandit.db"
 
 def create_db():
@@ -17,21 +19,37 @@ def create_db():
     db.commit()
     db.close()
 
-def buy_sell(user, stock, amount):
+def buy_sell(username, stock, amount):
     """
     Buys and sells stock for user
         parameters (str, int, str): stock name / symbol
                                     amount to buy: + for an actual buy action, - for a sell action
                                     user who's buying/selling the stock
-        returns (boolean): true for success, false for fail
-    This function does not yet safe guard against the situation where stock shares may be negative
-    but the flask and html should make the user impossible to sell anything they don't have
+        returns (str): error messages
+                        Success!
+                        Does not have enough money to buy stocks
+                        Does not have enough shares to sell stocks
+    This function does not yet safe guard against the situation where user sells stocks that
+    they don't own but the flask and html should make the user impossible to sell anything they don't have
+
+    Also assumes stocks exists because through the search function the user should only be allowed
+    to buy & sell stocks once the search exists
     """
+    # update_cash for user
+    data = api.update_data(stock)
+    # print(data)
+
+    price = data["price"] * amount
+
+    # cash update will be in place after Andrew finishes update_cash in the user file
+    #if(user.update_cash(-1*price) == False):
+    #    return "Does not have enough money to buy stocks"
+
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     # dict for passing into sql
-    dict = {"user":user, "stock":stock, "shares":0}
+    dict = {"user":username, "stock":stock, "shares":0}
 
     # get user's stocks
     c.execute("SELECT stock FROM stock_info WHERE user = :user AND stock = :stock", dict)
@@ -40,7 +58,7 @@ def buy_sell(user, stock, amount):
 
     if (exist == []):
         # if stock buying does not exist, add to database
-        c.execute("INSERT INTO stock_info VALUES(?,?,?)", (user, stock, amount))
+        c.execute("INSERT INTO stock_info VALUES(?,?,?)", (username, stock, amount))
         print("Stock "+stock+ " added.")
 
     else:
@@ -48,21 +66,22 @@ def buy_sell(user, stock, amount):
         # get existing shares
         c.execute("SELECT shares FROM stock_info WHERE user = :user AND stock = :stock", dict)
         shares = c.fetchall()
-        print(shares)
+        # print(shares)
         dict["shares"] = shares[0][0] + amount
         c.execute("UPDATE stock_info SET shares = :shares WHERE stock = :stock AND user = :user", dict)
     # if stock selling is 0, delete from database
     c.execute("SELECT shares FROM stock_info WHERE user = :user AND stock = :stock", dict)
     shares = c.fetchall()
-    if (shares[0][0] <= 0):
+    if(shares[0][0]< 0):
+        return "Does not have enough shares to sell stocks"
+    if (shares[0][0] == 0):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
         print("stock "+stock+" deleted from database because all shares are sold")
-    # update_cash for user
-    # Yuqing will do
+
     db.commit()
     db.close()
 
-def calculate_balance(user):
+def calculate_balance(username):
     """
     Calculates and updates the balance of a user based on the stocks the user owns.
         parameters (str): user to calculate
@@ -73,7 +92,7 @@ def calculate_balance(user):
     # update balance for user by calling update_balance
     # Andrew do this
 
-def get_stock(user):
+def get_stock(username):
     """
     Gets all the the user's stocks, shares, and values of those shares
         paramters (str): user to get
