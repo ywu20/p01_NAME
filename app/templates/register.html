@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
+SoftDev
+P01 -- The Biggest Loser
+-->
+
+<html>
+    <head>
+        <title> REGISTER PAGE </title>
+        <link rel="stylesheet" href="../static/bad.css">
+    </head>
+
+    <body>
+        <h1 class="header"> Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu <br>
+            Welcome, Please Register To Create An Account!</h1>
+
+        <!-- currently just displays register ability,
+                when user registers, for now, it will just return them to login page
+                does not connect to database yet- will have to implement later
+                will also have to implement error message when register fails- username taken, confirm password fails, etc.
+        -->
+        <form action="/rAuth" method="POST" class="standardBlock">
+            <h4> Enter a new username and password below to proceed</h4>
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="password" name="password0", placeholder="Password"><br>
+            <input type="password" name="password1", placeholder="Confirm password"><br><br>
+            <input type="submit" name="sub1" value="Register">
+        </form>
+        <h4 class="standardBlock" id="create_option"> Already have an account? <a href="{{ url_for('index') }}">Login.</a> </h4>
+
+        <!-- error for when user does not put a username or password (must be at least 1 character) and presses register -->
+        {% if given|length >= 1 %}
+         <p style="color: red">*Please input a {{given}}!</p>
+        {% endif %}
+
+        {% if mismatch %}
+          <p style="color:red">*Passwords don't match! Please try again!</p>
+        {% endif %}
+
+        {% if taken %}
+            <p style="color: red">*Username is taken! Please use a different one!</p>
+        {% endif %}
+    </body>
+
+</html>
