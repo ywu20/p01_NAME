@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
+SoftDev
+P01 -- The Biggest Loser
+-->
+
+<html>
+    <head>
+        <title> LOGIN PAGE </title>
+    </head>
+
+    <body>
+        <h1 class="header"> Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu </h1>
+
+        <form action="/auth" method="POST" class="standardBlock">
+            <h4> Enter your username and password below to proceed</h4>
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="password" name="password" placeholder="Password"><br><br>
+            <input type="submit" name="sub1" value="Login">
+        </form>
+        <h4 class="standardBlock" id="create_option"> New user? <a href="{{ url_for('register') }}">Create an account.</a> </h4>
+        {% if input == "success" %}
+            <p style="color:green">*Registration successful! Please login.</p>
+        {% elif input == "bad_user" %}
+            <p style="color:red">*Username not found. Please try again!</p>
+        {% elif input == "bad_pass" %}
+            <p style="color:red">*Password incorrect. Please try again!</p>
+        {% endif %}<br>
+
+    </body>
+
+</html>
