@@ -15,10 +15,17 @@ Updated the design doc with edits on frontend sitemap and database tables.
 yuqingW -- 2021-12-09 18:27
 Updated design doc with clearer component map that shows the relationship between the files and moving the original description in the component map to the component parts.
 
-andrewJ -- 2021-12-10 9:15
+patrickG -- 2021-12-10-9:26
+- Set up api.py functions and looked into database APIs
+
+yuqingW -- 2021-12-10-9:26
+- Set up stock.py functions 
+
+andrewJ -- 2021-12-10 9:26
 - Implemented basic login/logout/register system
-  - Implemented basic user.py functions 
+  - Implemented user.py database functions 
   - Add corresponding routes in __init__.py
   - Added corresponding templates (might need to rename to copy the names in the DD)
 - Added dependencies to requirements.txt
 - Updated Launch Codes
+
