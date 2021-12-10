@@ -13,7 +13,7 @@ def create_db():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT);")
+    c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT, cash REAL, networth REAL);")
     db.close()
 
 
@@ -39,7 +39,7 @@ def auth_user(username, password):
         return "bad_user"
 
 
-def create_user(username, password):
+def create_user(username, password, cash, networth):
     ''' Adds user to database if right username and password are given when a
         person registers '''
 
@@ -56,7 +56,7 @@ def create_user(username, password):
     if username in users:
         return False
     else:
-        c.execute("INSERT INTO users VALUES (?, ?);", (username, password))
+        c.execute("INSERT INTO users VALUES (?, ?, ?, ?);", (username, password, cash, networth))
         db.commit()
         return True
 

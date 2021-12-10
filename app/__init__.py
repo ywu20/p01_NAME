@@ -86,7 +86,7 @@ def rAuthenticate():
                 return render_template('register.html', mismatch = True)
             else:
                 # creates user account b/c no fails
-                if create_user(username, password0):
+                if create_user(username, password0, 10000, 10000):
                     return render_template('login.html', input='success')
                 # does not create account because create_user failed (username is taken)
                 else:
@@ -104,7 +104,7 @@ def logout():
         return redirect(url_for('index'))
     # Redirect to login page
     return redirect(url_for('index'))
-    
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
