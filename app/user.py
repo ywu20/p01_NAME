@@ -67,5 +67,15 @@ def create_user(username, password, cash, networth):
 #
 # def percent_lost():
 
+# def update_cash(amount):
+    """
+    updates the amount of cash the user has
+    if the amount the user want to spend is
+        greater than what they currently have,
+        returns false, does not change the amount
+        of cash, otherwise update and return true
+            parameters (double): amount to be update by
+            returns (boolean): true success, false fail
+    """
 # For testing purposes #################
 create_db()
