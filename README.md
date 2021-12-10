@@ -29,10 +29,10 @@ cd p01_NAME
 ```
 pip install -r requirements.txt
 ```
+- Run the app
 ```
 cd app
 ```
-- Run the app
 ```
 python3 __init__.py
 ```
