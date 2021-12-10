@@ -20,3 +20,5 @@ andrewJ -- 2021-12-10 9:15
   - Implemented basic user.py functions 
   - Add corresponding routes in __init__.py
   - Added corresponding templates (might need to rename to copy the names in the DD)
+- Added dependencies to requirements.txt
+- Updated Launch Codes
