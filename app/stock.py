@@ -9,6 +9,8 @@ import api
 import user
 DB_FILE = "discobandit.db"
 
+# 12/11 Andrew do calculate_balance(), finish early so the other things can come together
+# 12/12 Eliza finish get_stock function to match what you want with flask displaying
 def create_db():
     ''' Creates / Connects to DB File '''
 
@@ -78,6 +80,7 @@ def buy_sell(username, stock, amount):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
         print("stock "+stock+" deleted from database because all shares are sold")
 
+    # add calculate balance once that's done
     db.commit()
     db.close()
 

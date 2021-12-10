@@ -3,13 +3,11 @@
 # P01 -- ArRESTed Development
 # 2021-12-07
 
-# 12/10 Andrew get all the login flask stuff in here
-
-
 # 12/10 Eliza set up all the links to different pages,
 # so we can navigate through the entire site map.
 # Do like render templates, and put some <a href> stuff on
 # the html templates.
+# 12/12 Eliza set up flask for my stock and buy sell pages using backend functions in stock.py
 
 from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for

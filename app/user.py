@@ -5,6 +5,7 @@
 
 import sqlite3
 
+# 12/11 Andrew do update_balance, update_cash, get_balance, get_cash
 DB_FILE = "discobandit.db"
 
 def create_db():
@@ -59,14 +60,6 @@ def create_user(username, password, cash, networth):
         c.execute("INSERT INTO users VALUES (?, ?, ?, ?);", (username, password, cash, networth))
         db.commit()
         return True
-
-# Functions to be done later .  . .
-# def update_balance():
-#
-# def leaderboard():
-#
-# def percent_lost():
-
 # def update_cash(amount):
     """
     updates the amount of cash the user has
@@ -77,5 +70,32 @@ def create_user(username, password, cash, networth):
             parameters (double): amount to be update by
             returns (boolean): true success, false fail
     """
+
+# def update_balance(amount):
+    """
+    updates the balance of the user
+        parameters (double): amount to change by
+        returns: None
+    """
+
+# def get_cash(user):
+    """
+    gets the amount of cash a user has
+        parameters (str): user to get
+        returns (double): user's cash
+    """
+
+# def get_balance(user):
+    """
+    gets the balance of a user
+        parameters (str): user to get
+        returns (double): user's balance
+    """
+# Functions to be done later .  . .
+# def leaderboard():
+#
+# def percent_lost():
+
+
 # For testing purposes #################
 create_db()
