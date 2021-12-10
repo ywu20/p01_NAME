@@ -3,8 +3,11 @@
 #P01: ArRESTed Development
 #2021-12-10
 
+import yfinance as yf
+
 
 def update_data(stock):
+    pass
     """
     Gets the newest data for a stock
         parameter (str): symbol / name (depending on which one the apis use
@@ -27,13 +30,44 @@ def update_data(stock):
 
 # 12/10 get this done - make sure that the current prices of the stock is getable first
 # Pat
-def pull_data(stock):
-    # get api with keys and stuff
-    # returns the information we need in  a dictionary
+def pullData(stockName : str):
+    '''
+    pullData
+
+    args:
+        str stockName, a ticker for the security
+
+    returns a dictionary regarding info on a stock with ticker stockName
+
+    returns an empty dictionary if the stock ticker doesn't exist
+
+    There is a wait time on this function as it is using the wrapper API 
+    so we should keep that in mind....
+
+
+    '''
+    stockInfo = yf.Ticker(stockName.upper()).info
+    if stockInfo.get("regularMarketPrice") is None:
+        #the wrapper api will have @ none
+        #if the ticker doesn't exist.
+        #might update in the future?
+        return {}
+    else:
+        #some properties of it, will update as needed
+        return {
+        "officialName" : stockInfo["longName"],
+        "price" : stockInfo["currentPrice"],
+        "website": stockInfo["website"],
+        "sector" : stockInfo["sector"],
+        "description": stockInfo["longBusinessSummary"],
+        
+        }
 
 # worry about these later . . .
 def plot(data):
+    pass
     # plots the data
 
 def save_to_file(content, file_name):
+    pass
     #save things to file given a file name
