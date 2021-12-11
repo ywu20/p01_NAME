@@ -31,3 +31,6 @@ andrewJ -- 2021-12-10 9:26
 
 yuqingW -- 2021-12-10 18:56
 - wrote the buy_sell function in stock.py which is responsible for the updating the database with different transactions that the user makes. 
+
+patrickG -- 2021-12-11 16:10
+- working on Blob table for storing data. Also adding addPriceImage() and working on data from finnhubb api. 
