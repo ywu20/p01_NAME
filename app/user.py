@@ -5,7 +5,6 @@
 
 import sqlite3
 
-# 12/11 Andrew do update_balance, update_cash, get_balance, get_cash
 DB_FILE = "discobandit.db"
 
 def create_db():
@@ -60,37 +59,66 @@ def create_user(username, password, cash, networth):
         c.execute("INSERT INTO users VALUES (?, ?, ?, ?);", (username, password, cash, networth))
         db.commit()
         return True
-# def update_cash(amount):
-    """
-    updates the amount of cash the user has
-    if the amount the user want to spend is
-        greater than what they currently have,
-        returns false, does not change the amount
-        of cash, otherwise update and return true
-            parameters (double): amount to be update by
-            returns (boolean): true success, false fail
-    """
 
-# def update_balance(amount):
-    """
-    updates the balance of the user
-        parameters (double): amount to change by
-        returns: None
-    """
 
-# def get_cash(user):
+def get_cash(user):
     """
     gets the amount of cash a user has
         parameters (str): user to get
         returns (double): user's cash
     """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
-# def get_balance(user):
+    c.execute("SELECT cash FROM users WHERE usernames = '" + user + "'")
+    return float(c.fetchall()[0][0])
+
+
+def update_cash(user, amount):
     """
-    gets the balance of a user
+    updates the amount of cash the user has if the amount the user want to spend is
+    greater than what they currently have, returns false, does not change the amount
+    of cash, otherwise update and return true
+        parameters (double): amount to be update by
+        returns (boolean): true success, false fail
+    """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    if amount > get_networth(user):
+        return False
+    else:
+        amount = str(amount)
+        c.execute("UPDATE users SET cash ='" + amount + "' WHERE usernames = '" + user + "'")
+        db.commit()
+        return True
+
+def update_networth(user, amount):
+    """
+    updates the balance of the user
+        parameters (double): amount to change by
+        returns: None
+    """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    amount = str(amount)
+    c.execute("UPDATE users SET networth ='" + amount + "' WHERE usernames = '" + user + "'")
+    db.commit()
+
+
+def get_networth(user):
+    """
+    gets the networth of a user
         parameters (str): user to get
         returns (double): user's balance
     """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute("SELECT networth FROM users WHERE usernames = '" + user + "'")
+    return float(c.fetchall()[0][0])
+
 # Functions to be done later .  . .
 # def leaderboard():
 #
@@ -98,4 +126,10 @@ def create_user(username, password, cash, networth):
 
 
 # For testing purposes #################
-create_db()
+# create_db()
+# print(get_cash("andrew"))
+# print(get_networth("andrew"))
+# if update_cash("andrew", 100000.0):
+#     print(get_cash("andrew"))
+# update_networth("andrew",10)
+# print(get_networth("andrew"))
