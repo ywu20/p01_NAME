@@ -41,12 +41,17 @@ import yfinance as yf
 apple = yf.Ticker("AAPL")
 
 #get basic info
-apple.info
+#returns a dictionary of info about stock like business summary, current price, the company's official name etc.
+apple.info 
+#to get specific information
+apple.info["longBusinessSummary"]
+apple.info["currentPrice"]
 
 #show dividends
 apple.dividends
 
 #news on the stock
+#returns a list of dictionaries that contains news information like title, publisher, and link to news
 apple.news
 
 #analyst recommendations
