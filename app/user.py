@@ -84,8 +84,8 @@ def update_cash(user, amount):
     """
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-
-    if amount > get_networth(user):
+    amount = get_cash(user) + amount
+    if amount < 0:
         return False
     else:
         amount = str(amount)
@@ -106,7 +106,7 @@ def get_networth(user):
     c.execute("SELECT networth FROM users WHERE usernames = '" + user + "'")
     return float(c.fetchall()[0][0])
 
-    
+
 def update_networth(user, amount):
     """
     updates the balance of the user
@@ -128,10 +128,12 @@ def update_networth(user, amount):
 
 
 # For testing purposes #################
-# create_db()
-# print(get_cash("andrew"))
-# print(get_networth("andrew"))
-# if update_cash("andrew", 100000.0):
-#     print(get_cash("andrew"))
-# update_networth("andrew",10)
-# print(get_networth("andrew"))
+#create_db()
+#create_user("andrew", "01", 1000, 1000)
+#print(get_cash("andrew"))
+#print(get_networth("andrew"))
+#if update_cash("andrew", -100000.0):
+#    print(get_cash("andrew"))
+#print(get_cash("andrew"))
+#update_networth("andrew",10)
+#print(get_networth("andrew"))
