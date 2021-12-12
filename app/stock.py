@@ -55,7 +55,6 @@ def buy_sell(username, stock, amount):
     # get user's stocks
     c.execute("SELECT stock FROM stock_info WHERE user = :user AND stock = :stock", dict)
     exist = c.fetchall()
-    print(exist)
 
     if (exist == []):
         # if stock buying does not exist, add to database
@@ -79,20 +78,24 @@ def buy_sell(username, stock, amount):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
         print("stock "+stock+" deleted from database because all shares are sold")
 
-    # add calculate balance once that's done
     db.commit()
     db.close()
 
-def calculate_balance(username):
+def calculate_networth(username):
     """
     Calculates and updates the balance of a user based on the stocks the user owns.
         parameters (str): user to calculate
-        returns (double): balance of user
+        returns (float): balance of user
     """
 
     # calculate balance based on stock owned
-    # update balance for user by calling update_balance
-    # Yuqing do this
+    stocks = get_stock(username)
+    networth = user.get_cash(username)
+    for i in stocks:
+        networth+= i[2]
+    # update networth for user by calling update_networth in user
+    user.update_networth(username,networth)
+    return float(networth)
 
 def get_stock(username):
     """
@@ -100,13 +103,25 @@ def get_stock(username):
         paramters (str): user to get
         returns (list): [[stock1, share1, value1], [stock2, share2, value2], ...]
     """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
     # get stocks and shares
-    # calculate values with update_data to get latest prices
-    #(make sure you pip install requirements.txt in repo because pat did yfinance library)
-    # Eliza
+    output_list = []
+    c.execute("SELECT stock,shares FROM stock_info WHERE user = :user", {"user":username})
+    list = c.fetchall()
+    for i in list:
+        li = [i[0], i[1]]
+        # calculate values with update_data to get latest prices
+        li.append(api.update_data(li[0])["price"] * li[1])
+        output_list.append(li)
+    db.close()
+    return output_list
 
 # for testing ########
-create_db()
-buy_sell("andrew", "AAPL", 1)
-buy_sell("andrew", "GOOG", 10)
-buy_sell("andrew", "AMZN", 10)
+#create_db()
+#buy_sell("andrew", "AAPL", 10)
+#buy_sell("andrew", "GOOG", 10)
+#buy_sell("andrew", "AMZN", 10)
+
+#get_stock("andrew")
+#calculate_networth("andrew")
