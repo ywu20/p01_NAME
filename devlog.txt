@@ -39,3 +39,9 @@ andrewJ -- 2021-12-11 22:20
 - implemented get_cash, update_cash, update_networth, get_networth
 - added routes to leaderboard, dashboard in __init__.py + corresponding templates 
 - linked bootstrap (not to be used yet)
+
+yuqingW -- 2021-12-12 11:27
+- updated stock buy_sell function with update_cash in the user python file.
+- wrote calculate_networth which looks at the user's stock portfolio and update the user's networth accordingly, moved this to user.py because seems more appropriate.
+- wrote get_stock function that gets all the information about the stocks that the user own.
+- modified update_cash so now it addes the amount instead of setting cash to amount.
