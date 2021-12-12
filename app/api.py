@@ -7,7 +7,6 @@ import yfinance as yf
 
 
 def update_data(stock):
-    pass
     """
     Gets the newest data for a stock
         parameter (str): symbol / name (depending on which one the apis use
@@ -19,20 +18,18 @@ def update_data(stock):
     # Do not put a lot of code here, should mainly be calling helper functions
 
     # should kind of work on something like this:
-    #dict = pull_data(stock)
+    dict = pull_data(stock)
     #img = plot(dict[list_of_prices_or_whatever])
     #file_name = "foo.jpg"
     #save_to_file(img, file_name)
-    #return dict
+    return dict
 
     # if apis have graphs and we don't need to plot things ourselves then we
     # can just put all the codes from pull_data() here and no helper functions needed
 
-# 12/10 get this done - make sure that the current prices of the stock is getable first
-# Pat
-def pullData(stockName : str):
+def pull_data(stockName : str):
     '''
-    pullData
+    pull_data
 
     args:
         str stockName, a ticker for the security
@@ -41,12 +38,13 @@ def pullData(stockName : str):
 
     returns an empty dictionary if the stock ticker doesn't exist
 
-    There is a wait time on this function as it is using the wrapper API 
+    There is a wait time on this function as it is using the wrapper API
     so we should keep that in mind....
 
 
     '''
     stockInfo = yf.Ticker(stockName.upper()).info
+
     if stockInfo.get("regularMarketPrice") is None:
         #the wrapper api will have @ none
         #if the ticker doesn't exist.
@@ -54,13 +52,14 @@ def pullData(stockName : str):
         return {}
     else:
         #some properties of it, will update as needed
+
         return {
         "officialName" : stockInfo["longName"],
         "price" : stockInfo["currentPrice"],
         "website": stockInfo["website"],
         "sector" : stockInfo["sector"],
         "description": stockInfo["longBusinessSummary"],
-        
+
         }
 
 # worry about these later . . .
