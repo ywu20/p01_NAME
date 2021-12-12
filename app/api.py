@@ -44,7 +44,7 @@ def pull_data(stockName : str):
 
     '''
     stockInfo = yf.Ticker(stockName.upper()).info
-
+    stockDiv = yf.Ticker(stockName.upper()).news
     if stockInfo.get("regularMarketPrice") is None:
         #the wrapper api will have @ none
         #if the ticker doesn't exist.
@@ -52,7 +52,7 @@ def pull_data(stockName : str):
         return {}
     else:
         #some properties of it, will update as needed
-
+        print(type(stockDiv[0]))
         return {
         "officialName" : stockInfo["longName"],
         "price" : stockInfo["currentPrice"],
@@ -70,3 +70,4 @@ def plot(data):
 def save_to_file(content, file_name):
     pass
     #save things to file given a file name
+update_data("AAPL")

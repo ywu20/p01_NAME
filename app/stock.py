@@ -9,7 +9,7 @@ import api
 import user
 DB_FILE = "discobandit.db"
 
-# 12/12 Eliza finish get_stock function to match what you want with flask displaying
+
 def create_db():
     ''' Creates / Connects to DB File '''
 
@@ -81,22 +81,6 @@ def buy_sell(username, stock, amount):
     db.commit()
     db.close()
 
-def calculate_networth(username):
-    """
-    Calculates and updates the balance of a user based on the stocks the user owns.
-        parameters (str): user to calculate
-        returns (float): balance of user
-    """
-
-    # calculate balance based on stock owned
-    stocks = get_stock(username)
-    networth = user.get_cash(username)
-    for i in stocks:
-        networth+= i[2]
-    # update networth for user by calling update_networth in user
-    user.update_networth(username,networth)
-    return float(networth)
-
 def get_stock(username):
     """
     Gets all the the user's stocks, shares, and values of those shares
@@ -124,4 +108,4 @@ def get_stock(username):
 #buy_sell("andrew", "AMZN", 10)
 
 #get_stock("andrew")
-#calculate_networth("andrew")
+calculate_networth("andrew")
