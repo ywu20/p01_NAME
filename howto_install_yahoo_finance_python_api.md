@@ -43,24 +43,31 @@ apple = yf.Ticker("AAPL")
 #get basic info
 #returns a dictionary of info about stock like business summary, current price, the company's official name etc.
 apple.info 
-#to get specific information
+
 apple.info["longBusinessSummary"]
 apple.info["currentPrice"]
 
 #show dividends
+#use the date the dividends are distributed as the key, shows amount of dividends
 apple.dividends
 
+apple.dividends["2021-11-05"]
+
 #news on the stock
-#returns a list of dictionaries that contains news information like title, publisher, and link to news
+#returns a list of dictionaries that contains recent high ranking news information like title, publisher, and link to news
 apple.news
 
-#analyst recommendations
-apple.recommendations
+apple.news[0]["title"]
 
+#analyst recommendations
+#use date as the key. If recommendations are made on that day, provide information about the type of recommendation and the firm that made the recommendation
+apple.recommendations
+apple.recommendations["2021-10-29"]
 ```
 ---
 
 Accurate as of (last update): 2021-12-12
 
 #### Contributors:  
-Patrick  Ging  Pd1
+Patrick  Ging  Pd2  
+Yuqing Wu Pd2  
