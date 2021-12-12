@@ -34,3 +34,6 @@ yuqingW -- 2021-12-10 18:56
 
 patrickG -- 2021-12-11 16:10
 - working on Blob table for storing data. Also adding addPriceImage() and working on data from finnhubb api. 
+
+andrewJ -- 2021-12-11 22:20
+- implemented get_cash, update_cash, update_networth, get_networth
