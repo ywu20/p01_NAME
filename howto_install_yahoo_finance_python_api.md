@@ -52,7 +52,6 @@ apple.news
 #analyst recommendations
 apple.recommendations
 
-
 ```
 ---
 
