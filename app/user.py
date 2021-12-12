@@ -93,6 +93,20 @@ def update_cash(user, amount):
         db.commit()
         return True
 
+
+def get_networth(user):
+    """
+    gets the networth of a user
+        parameters (str): user to get
+        returns (double): user's balance
+    """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute("SELECT networth FROM users WHERE usernames = '" + user + "'")
+    return float(c.fetchall()[0][0])
+
+    
 def update_networth(user, amount):
     """
     updates the balance of the user
@@ -106,18 +120,6 @@ def update_networth(user, amount):
     c.execute("UPDATE users SET networth ='" + amount + "' WHERE usernames = '" + user + "'")
     db.commit()
 
-
-def get_networth(user):
-    """
-    gets the networth of a user
-        parameters (str): user to get
-        returns (double): user's balance
-    """
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-
-    c.execute("SELECT networth FROM users WHERE usernames = '" + user + "'")
-    return float(c.fetchall()[0][0])
 
 # Functions to be done later .  . .
 # def leaderboard():

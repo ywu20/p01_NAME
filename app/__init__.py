@@ -3,10 +3,6 @@
 # P01 -- ArRESTed Development
 # 2021-12-07
 
-# 12/10 Eliza set up all the links to different pages,
-# so we can navigate through the entire site map.
-# Do like render templates, and put some <a href> stuff on
-# the html templates.
 # 12/12 Eliza set up flask for my stock and buy sell pages using backend functions in stock.py
 
 from os import urandom
@@ -15,6 +11,7 @@ from user import auth_user, create_user, create_db
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -26,7 +23,7 @@ def index():
         return render_template('response.html',username=session['username'])
     return render_template('login.html')
 
-# authetication of login
+
 @app.route("/auth", methods=['GET','POST'])
 def authenticate():
     ''' Checks whether method is get, post. If get method, then redirect to
@@ -51,11 +48,13 @@ def authenticate():
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
 
+
 @app.route("/register")
 def register():
     ''' Displays register page '''
 
     return render_template('register.html')
+
 
 @app.route("/rAuth", methods =['GET', 'POST'])
 def rAuthenticate():
@@ -91,6 +90,20 @@ def rAuthenticate():
                     return render_template('register.html', taken = True)
 
 
+@app.route("/dashboard")
+def dashboard():
+    ''' Displays currently logged in user's dashboard '''
+
+    return render_template('dashboard.html', username=session['username'])
+
+
+@app.route("/leaderboard")
+def leaderboard():
+    ''' Displays the leaderboard '''
+
+    return render_template('leaderboard.html', username=session['username'])
+
+
 @app.route("/logout")
 def logout():
     ''' Logout user by deleting user from session dict. Redirects to loginpage '''
@@ -102,6 +115,8 @@ def logout():
         return redirect(url_for('index'))
     # Redirect to login page
     return redirect(url_for('index'))
+
+
 
 if __name__ == "__main__":
     app.debug = True
