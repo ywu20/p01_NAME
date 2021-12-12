@@ -37,3 +37,5 @@ patrickG -- 2021-12-11 16:10
 
 andrewJ -- 2021-12-11 22:20
 - implemented get_cash, update_cash, update_networth, get_networth
+- added routes to leaderboard, dashboard in __init__.py + corresponding templates 
+- linked bootstrap (not to be used yet)
