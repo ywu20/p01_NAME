@@ -1,6 +1,6 @@
 import sqlite3
 import yfinance as yf
-import requests as r 
+import requests
 import matplotlib.pyplot as plt
 import matplotlib.image as pltimg
 import json
@@ -22,7 +22,7 @@ class ImageTable:
         self._db = sqlite3.connect(fileName)
         self._cursor = self._db.cursor()
 
-        self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY, );")
+        self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY);")
         self._db.close()
 
     def addPriceImage(self, args):
@@ -38,7 +38,7 @@ class ImageTable:
             toDay : year
 
         }
-        
+
         '''
         #why do this? because it's just easier to use near the __init__ file
         newArgs = {
@@ -56,7 +56,8 @@ class ImageTable:
             ).timetuple())),
             "token" : args["token"]
             }
-        stockData = json.loads(r.get("https://finnhub.io/api/v1/stock/candle?", params=newArgs))
+            
+        stockData = requests.get("https://finnhub.io/api/v1/stock/candle?", params=newArgs).json()
 
         '''
         insert matplotlib stuff to generate the function, for now it'll just return the data
@@ -64,5 +65,17 @@ class ImageTable:
 
         return stockData
 
-
-
+###### TESTING ######################
+x = ImageTable(TABLENAME, DB_FILE)
+print(x.addPriceImage({
+    "ticker" : "AAPL",
+    "resolution" : "D",
+    "fromYear" : 2021,
+    "fromMonth" : 12,
+    "fromDay" : 9,
+    "toYear" : 2021,
+    "toMonth" : 12,
+    "toDay" : 9,
+    "token" : "c6qgpm2ad3i891nj4g5g"
+    })
+)
