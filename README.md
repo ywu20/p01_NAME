@@ -1,10 +1,10 @@
 # The Biggest Loser by Name
 
 ## Roster with roles
-Yuqing Wu -  PM, stock backend sql
-Patrick Ging -  api
-Eliza Knapp -  flask
-Andrew Juang -  api graphing, user backend sql
+Yuqing Wu -  PM, stock backend sql  
+Patrick Ging -  api  
+Eliza Knapp -  flask  
+Andrew Juang -  api graphing, user backend sql  
 
 ## Description
 
