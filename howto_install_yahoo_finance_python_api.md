@@ -21,6 +21,40 @@ Some of you guys might need an API to access stock data, market data, etc. There
 * https://github.com/ranaroussi/yfinance
 
 ---
+## Intro to the module
+
+The main way we access stock information in the yfinance module is with the Ticker object.
+
+To access data about a particular stock use the Ticker constructor with the ticker name as the argument
+```
+import yfinance as yf
+
+apple = yf.Ticker("AAPL")
+# ^^^ constructor for apple ticker  
+````
+
+You can do a plethora of things with this ticker object - below are a few examples. All of this comes from the documentation provided in the second link. 
+
+```
+import yfinance as yf
+
+apple = yf.Ticker("AAPL")
+
+#get basic info
+apple.info
+
+#show dividends
+apple.dividends
+
+#news on the stock
+apple.news
+
+#analyst recommendations
+apple.recommendations
+
+
+```
+---
 
 Accurate as of (last update): 2021-12-12
 
