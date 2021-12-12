@@ -9,7 +9,6 @@ import api
 import user
 DB_FILE = "discobandit.db"
 
-# 12/11 Andrew do calculate_balance(), finish early so the other things can come together
 # 12/12 Eliza finish get_stock function to match what you want with flask displaying
 def create_db():
     ''' Creates / Connects to DB File '''
@@ -44,8 +43,8 @@ def buy_sell(username, stock, amount):
     price = data["price"] * amount
 
     # cash update will be in place after Andrew finishes update_cash in the user file
-    #if(user.update_cash(-1*price) == False):
-    #    return "Does not have enough money to buy stocks"
+    if(user.update_cash(username, -1*price) == False):
+        return "Does not have enough money to buy stocks"
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -93,7 +92,7 @@ def calculate_balance(username):
 
     # calculate balance based on stock owned
     # update balance for user by calling update_balance
-    # Andrew do this
+    # Yuqing do this
 
 def get_stock(username):
     """
@@ -108,6 +107,6 @@ def get_stock(username):
 
 # for testing ########
 create_db()
-buy_sell("user1", "AAPL", 10)
-buy_sell("user1", "GOOG", 10)
-buy_sell("user1", "AMZN", 10)
+buy_sell("andrew", "AAPL", 1)
+buy_sell("andrew", "GOOG", 10)
+buy_sell("andrew", "AMZN", 10)
