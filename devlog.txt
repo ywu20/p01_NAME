@@ -53,6 +53,12 @@ in flask and html pages
 - renders the stock info accordingly (without css tho...)
 potential issue: it kinda takes a while
 
+patrickG --2021-12-12 18:22
+- implementing MatPlotLib Finance Package to create graphs
+- implemented yFinance module to allow us to access more data and more years
+- Created temp folder for current purposes of developing this functionality
+- Finished addPriceImage(), perhaps going to add it in the context of the db? i'm unsure right now will need to talk to the group on this one
+
 elizaK -- 2021-12-13 18:38
 - got the buy stock with shares functionality working
 - updates the stock and user databases using the stocks given
