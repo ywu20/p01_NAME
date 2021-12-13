@@ -148,7 +148,7 @@ def buy_stocks():
     if 'username' not in session:
         return render_template('login.html')
 
-    return render_template("buy_stocks.html")
+    return render_template("buy_stocks.html", stock=False)
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
@@ -161,10 +161,14 @@ def search():
     
     info = api.pull_data(query)
     if (not info):
-        return render_template("buy_stocks.html", error="no such stock")
+        return render_template("buy_stocks.html", stock=False,error="no such stock")
     
     print(info)
-    return render_template("buy_stocks.html", stock_info=info) 
+    name = info['officialName']
+    price = info['price']
+    website = info['website']
+
+    return render_template("buy_stocks.html", stock=True,stock_name=name, stock_price=price, stock_website=website, search = query) 
 
 if __name__ == "__main__":
     app.debug = True

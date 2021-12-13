@@ -45,3 +45,10 @@ yuqingW -- 2021-12-12 11:27
 - wrote calculate_networth which looks at the user's stock portfolio and update the user's networth accordingly.
 - wrote get_stock function that gets all the information about the stocks that the user own.
 - modified update_cash so now it addes the amount instead of setting cash to amount.
+
+elizaK -- 2021-12-13 12:15
+- created the manage stocks and buy stocks pages with the routes
+in flask and html pages
+- made the search function work on the buy stocks page
+- renders the stock info accordingly (without css tho...)
+potential issue: it kinda takes a while

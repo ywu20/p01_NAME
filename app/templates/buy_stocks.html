@@ -20,15 +20,20 @@ P01 -- The Biggest Loser
     </ul>
     
     <h1>{{error}}</h1>
-    <h3>{{stock_info}}</h3>
     <form action="/search" method="post">
       <label for="search">Search for a stock using symbol:</label><br>
       <input type="text" name="search">
       <input type="submit">
     </form>
-
-    <body>
-        <h1 class="header"> Buy Stocks! </h1>
-    </body>
+    <br>
+    
+    {% if stock %}
+      <h3>Here is the stock: {{search}}</h3>
+      <ul>
+        <li>Name: {{stock_name}}</li>
+        <li>Price: {{stock_price}}</li>
+        <li><a href={{stock_website}}>Learn More</a></li>
+      </ul>
+    {% endif %}
 
 </html>
