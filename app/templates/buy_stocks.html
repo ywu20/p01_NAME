@@ -34,6 +34,13 @@ P01 -- The Biggest Loser
         <li>Price: {{stock_price}}</li>
         <li><a href={{stock_website}}>Learn More</a></li>
       </ul>
+      <form action="/buy_share" method="post">
+        <label for="num_shares">How many shares would you like?</label>
+        <input type="text" name="num_shares">
+        <input type="hidden" name="symbol" value="{{symbol}}">
+        <input type="hidden" name="price" value="{{stock_price}}">
+        <input type="submit" value="Buy Shares">
+      </form>
     {% endif %}
 
 </html>

@@ -12,6 +12,7 @@ import stock
 import api
 
 app = Flask(__name__)
+
 app.secret_key = urandom(32)
 
 
@@ -168,7 +169,30 @@ def search():
     price = info['price']
     website = info['website']
 
-    return render_template("buy_stocks.html", stock=True,stock_name=name, stock_price=price, stock_website=website, search = query) 
+    return render_template("buy_stocks.html", symbol=query,stock=True,stock_name=name, stock_price=price, stock_website=website, search = query) 
+
+@app.route("/buy_share", methods=['GET', 'POST'])
+def buy_share():
+    if 'username' not in session:
+        return render_template('login.html')
+    
+    message = ""
+    if (request.method == "POST"):
+        requested_shares = request.form.get("num_shares")
+        message = str(requested_shares) + " stock shares purchased!"
+        print(message)
+        price = request.form.get("price")
+        print(price)
+        stock_symbol = request.form.get("symbol")
+        print(stock_symbol)
+
+    change_price = float(price) * int(requested_shares)
+    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares))
+    # cash decreases
+    if (user.update_cash(session['username'], -1 * change_price)):
+        # net worth increases
+        user.update_networth(session['username'], change_price)
+    return render_template("buy_stocks.html", error=message)
 
 if __name__ == "__main__":
     app.debug = True

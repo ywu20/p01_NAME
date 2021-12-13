@@ -52,3 +52,8 @@ in flask and html pages
 - made the search function work on the buy stocks page
 - renders the stock info accordingly (without css tho...)
 potential issue: it kinda takes a while
+
+elizaK -- 2021-12-13 18:38
+- got the buy stock with shares functionality working
+- updates the stock and user databases using the stocks given
+- not super thoroughly tested, because of the error part with the stock.buy_sell
