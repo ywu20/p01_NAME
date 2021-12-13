@@ -82,6 +82,7 @@ def rAuthenticate():
             if password0 != password1:
                 return render_template('register.html', mismatch = True)
             else:
+                create_db()
                 # creates user account b/c no fails
                 if create_user(username, password0, 10000, 10000):
                     return render_template('login.html', input='success')
