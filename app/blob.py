@@ -1,8 +1,9 @@
 import sqlite3
 import yfinance as yf
 import requests
-import matplotlib.pyplot as plt
-import matplotlib.image as pltimg
+import mplfinance as fplt
+import pandas as pd
+from datetime import datetime
 import json
 import time
 import datetime
@@ -56,14 +57,23 @@ class ImageTable:
             ).timetuple())),
             "token" : args["token"]
             }
-            
-        stockData = requests.get("https://finnhub.io/api/v1/stock/candle?", params=newArgs).json()
 
-        '''
-        insert matplotlib stuff to generate the function, for now it'll just return the data
-        '''
+        # stockData = requests.get("https://finnhub.io/api/v1/stock/candle?", params=newArgs).json()
 
-        return stockData
+        df = pd.read_csv('https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&count=500&format=csv&token=c6qgpm2ad3i891nj4g5g')
+
+        df.index = pd.DatetimeIndex(df['t'])
+        df_ = df.rename(columns={'o': 'Open', "h": "High", "l" : "Low", "c" : "Close"})
+        #df['t'] = pd.to_datetime(df['t'],unit='s')
+        fplt.plot(
+                df_,
+                type='candle',
+                title='Apple, March - 2020',
+                ylabel='Price ($)'
+            )
+
+
+        # return stockData
 
 ###### TESTING ######################
 x = ImageTable(TABLENAME, DB_FILE)
