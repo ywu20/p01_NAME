@@ -10,6 +10,7 @@ Andrew Juang -  api graphing, user backend sql
 This is a stock game where the user tries to lose all of its money! The user gets a certain amount of cash at the start, then they can buy and sell stocks with those cash. The user can see what stocks is in portfolio and check the leaderboard to see how well he/she's doing. The user can also see other people's stock portfolio to see what stocks other people own. We use the apis to get information about the stocks and display them on the page to help the user better choose their stocks. 
 
 
+## Launch Codes
 - Install virtual environment <br>
 ```
 python3 -m venv env
