@@ -9,7 +9,7 @@ from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for
 import user 
 import stock
-
+import api
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -158,9 +158,13 @@ def search():
     
     if (request.method == "POST"):
         query = request.form.get("search")
-        print(query)
-
-    return render_template("buy_stocks.html", search=query) 
+    
+    info = api.pull_data(query)
+    if (not info):
+        return render_template("buy_stocks.html", error="no such stock")
+    
+    print(info)
+    return render_template("buy_stocks.html", stock_info=info) 
 
 if __name__ == "__main__":
     app.debug = True
