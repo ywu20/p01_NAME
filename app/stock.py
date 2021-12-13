@@ -108,4 +108,4 @@ def get_stock(username):
 #buy_sell("andrew", "AMZN", 10)
 
 #get_stock("andrew")
-calculate_networth("andrew")
+#calculate_networth("andrew")

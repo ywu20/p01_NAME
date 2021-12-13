@@ -7,7 +7,9 @@
 
 from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for
-from user import auth_user, create_user, create_db
+import user 
+import stock
+
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -19,9 +21,9 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
-    if 'username' in session:
-        return render_template('response.html',username=session['username'])
-    return render_template('login.html')
+    if 'username' not in session:
+        return render_template('login.html')
+    return render_template("dashboard.html", username=session['username'])
 
 
 @app.route("/auth", methods=['GET','POST'])
@@ -39,7 +41,7 @@ def authenticate():
     if method == 'GET':
         return redirect(url_for('index'))
 
-    auth_state = auth_user(username, password)
+    auth_state = user.auth_user(username, password)
     if auth_state == True:
         session['username'] = username
         return redirect(url_for('index'))
@@ -49,7 +51,7 @@ def authenticate():
         return render_template('login.html', input="bad_user")
 
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     ''' Displays register page '''
 
@@ -82,30 +84,38 @@ def rAuthenticate():
             if password0 != password1:
                 return render_template('register.html', mismatch = True)
             else:
-                create_db()
+                user.create_db()
+                stock.create_db()
                 # creates user account b/c no fails
-                if create_user(username, password0, 10000, 10000):
+                if user.create_user(username, password0, 10000, 10000):
                     return render_template('login.html', input='success')
                 # does not create account because create_user failed (username is taken)
                 else:
                     return render_template('register.html', taken = True)
 
 
-@app.route("/dashboard")
-def dashboard():
+@app.route("/dashboard", methods=['GET', 'POST'])
+def dashboard(): 
     ''' Displays currently logged in user's dashboard '''
+   # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
 
     return render_template('dashboard.html', username=session['username'])
 
 
-@app.route("/leaderboard")
+@app.route("/leaderboard", methods=['GET', 'POST'])
 def leaderboard():
     ''' Displays the leaderboard '''
+
+   # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
 
     return render_template('leaderboard.html', username=session['username'])
 
 
-@app.route("/logout")
+@app.route("/logout", methods=['GET', 'POST'])
 def logout():
     ''' Logout user by deleting user from session dict. Redirects to loginpage '''
 
@@ -117,7 +127,40 @@ def logout():
     # Redirect to login page
     return redirect(url_for('index'))
 
+@app.route("/manage_stocks", methods=['GET', 'POST'])
+def manage_stocks():
+    ''' 
+        This is going to allow you to look at your stocks in more detail and also sell shares of them
+    '''
+   # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
 
+    return render_template('manage_stocks.html')
+
+@app.route("/buy_stocks", methods=['GET', 'POST'])
+def buy_stocks():
+    '''
+        This is going to allow you to search up stocks and later it will give you random stocks
+        to look at. You can click on them for more info and choose to buy some amount of shares.
+    '''
+    # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
+
+    return render_template("buy_stocks.html")
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
+    
+    if (request.method == "POST"):
+        query = request.form.get("search")
+        print(query)
+
+    return render_template("buy_stocks.html", search=query) 
 
 if __name__ == "__main__":
     app.debug = True
