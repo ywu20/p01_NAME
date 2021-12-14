@@ -46,7 +46,7 @@ yuqingW -- 2021-12-12 11:27
 - wrote get_stock function that gets all the information about the stocks that the user own.
 - modified update_cash so now it addes the amount instead of setting cash to amount.
 
-elizaK -- 2021-12-13 12:15
+elizaK -- 2021-12-13 12:15 
 - created the manage stocks and buy stocks pages with the routes
 in flask and html pages
 - made the search function work on the buy stocks page
@@ -67,3 +67,8 @@ elizaK -- 2021-12-13 18:38
 andrewJ -- 2021-12-13 22:02
 - debugged user.py
   - broke when logging in with a username not registered
+
+elizaK -- 2021-12-14 10:50
+- the buy stock thing definitely works now
+- tested the function and modified stock/user.py to make
+the price getting a little bit faster...
