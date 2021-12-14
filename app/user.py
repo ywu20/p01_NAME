@@ -23,6 +23,7 @@ def auth_user(username, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
+    c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT, cash REAL, networth REAL);")
     # Create List of Users
     c.execute("SELECT usernames FROM users")
     users = []

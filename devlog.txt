@@ -63,3 +63,7 @@ elizaK -- 2021-12-13 18:38
 - got the buy stock with shares functionality working
 - updates the stock and user databases using the stocks given
 - not super thoroughly tested, because of the error part with the stock.buy_sell
+
+andrewJ -- 2021-12-13 22:02
+- debugged user.py
+  - broke when logging in with a username not registered
