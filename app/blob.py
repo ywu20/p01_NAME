@@ -80,26 +80,26 @@ class ImageTable:
         fplt.plot(
                 yf.download(
                     args["ticker"],
-                    start=startDate , 
+                    start=startDate ,
                     end=endDate),
                 type=mode,
                 title=f'{args["ticker"]}, from {startDate} to {endDate}',
                 ylabel='Price ($)',
                 savefig=f'temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png' # for saving the graph
             )
-        
+
 
         # return stockData
 
 ###### TESTING ######################
 x = ImageTable(TABLENAME, DB_FILE)
 print(x.addPriceImage({
-    "ticker" : "WMT",
+    "ticker" : "BRKA",
     "resolution" : "D",
-    "fromYear" : 1960,
+    "fromYear" : 2000,
     "fromMonth" : 11,
     "fromDay" : 9,
-    "toYear" : 2021,
+    "toYear" : 2014,
     "toMonth" : 12,
     "toDay" : 11
     })
