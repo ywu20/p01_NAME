@@ -20,7 +20,7 @@ def create_db():
     db.commit()
     db.close()
 
-def buy_sell(username, stock, amount):
+def buy_sell(username, stock, amount, price_one):
     """
     Buys and sells stock for user
         parameters (str, int, str): stock name / symbol
@@ -36,11 +36,8 @@ def buy_sell(username, stock, amount):
     Also assumes stocks exists because through the search function the user should only be allowed
     to buy & sell stocks once the search exists
     """
-    # update_cash for user
-    data = api.update_data(stock)
-    # print(data)
 
-    price = data["price"] * amount
+    price = price_one * amount
 
     # cash update will be in place after Andrew finishes update_cash in the user file
     if(user.update_cash(username, -1*price) == False):
@@ -80,6 +77,8 @@ def buy_sell(username, stock, amount):
 
     db.commit()
     db.close()
+
+    return "Success"
 
 def get_stock(username):
     """

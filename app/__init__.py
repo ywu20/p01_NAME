@@ -164,7 +164,6 @@ def search():
     if (not info):
         return render_template("buy_stocks.html", stock=False,error="no such stock")
     
-    print(info)
     name = info['officialName']
     price = info['price']
     website = info['website']
@@ -179,20 +178,22 @@ def buy_share():
     message = ""
     if (request.method == "POST"):
         requested_shares = request.form.get("num_shares")
-        message = str(requested_shares) + " stock shares purchased!"
-        print(message)
         price = request.form.get("price")
         print(price)
         stock_symbol = request.form.get("symbol")
         print(stock_symbol)
 
     change_price = float(price) * int(requested_shares)
-    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares))
+    print(change_price)
+    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
+    print(stock.get_stock(session['username']))
+
     # cash decreases
     if (user.update_cash(session['username'], -1 * change_price)):
         # net worth increases
         user.update_networth(session['username'], change_price)
-    return render_template("buy_stocks.html", error=message)
+
+    return render_template("buy_stocks.html", error=str(error))
 
 if __name__ == "__main__":
     app.debug = True
