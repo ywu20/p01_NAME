@@ -75,8 +75,27 @@ def buy_sell(username, stock, amount, price_one):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
         print("stock "+stock+" deleted from database because all shares are sold")
 
+    calculate_networth()
     db.commit()
     db.close()
+    return "Success!"
+
+def calculate_networth(username):
+    """
+    Calculates and updates the balance of a user based on the stocks the user owns.
+        parameters (str): user to calculate
+        returns (double): balance of user
+        returns (float): balance of user
+    """
+
+    stocks = get_stock(username)
+    networth = user.get_cash(username)
+    for i in stocks:
+        networth+= i[2]
+    # update networth for user by calling update_networth in user
+    user.update_networth(username,networth)
+    return float(networth)
+
 
     return "Success"
 
