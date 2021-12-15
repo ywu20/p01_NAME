@@ -237,7 +237,7 @@ def buy_share():
         print(stock_symbol)
 
     # change_price = float(price) * int(requested_shares)
-    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares))
+    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
     # cash decreases - handles this part in buy_sell now.
     #if (user.update_cash(session['username'], -1 * change_price)):
         # net worth increases
