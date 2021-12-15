@@ -75,7 +75,7 @@ def buy_sell(username, stock, amount, price_one):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
         print("stock "+stock+" deleted from database because all shares are sold")
 
-    calculate_networth()
+    calculate_networth(username)
     db.commit()
     db.close()
     return "Success!"
@@ -120,7 +120,7 @@ def get_stock(username):
     return output_list
 
 # for testing ########
-#create_db()
+create_db()
 #buy_sell("andrew", "AAPL", 10)
 #buy_sell("andrew", "GOOG", 10)
 #buy_sell("andrew", "AMZN", 10)
