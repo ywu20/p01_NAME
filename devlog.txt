@@ -79,3 +79,4 @@ andrewJ, patrickG -- 2021-12-15 9:14
 
 yuqingW -- 2021-12-15 10:58
 - Working codes now. 
+- manage stock flask displaying
