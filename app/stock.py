@@ -18,7 +18,7 @@ def create_db():
 
     c.execute("CREATE TABLE IF NOT EXISTS stock_info (user TEXT, stock TEXT, shares INTEGER);")
     db.commit()
-    db.close()
+    #db.close()
 
 def buy_sell(username, stock, amount, price_one):
     """
@@ -76,19 +76,18 @@ def buy_sell(username, stock, amount, price_one):
         print("stock "+stock+" deleted from database because all shares are sold")
 
     db.commit()
-    #db.close()
-    calculate_networth(username)
+    #calculate_networth(username) because we are not displaying stocks immediately we can just rely on that every time we click on manage stocks the info is updated. Speed.
     return "Success!"
 
-def calculate_networth(username):
+def calculate_networth(username, stocks):
     """
     Calculates and updates the balance of a user based on the stocks the user owns.
         parameters (str): user to calculate
-        returns (double): balance of user
+                    (list): what get_stock returns, is only called in get_stock
+
         returns (float): balance of user
     """
 
-    stocks = get_stock(username)
     networth = user.get_cash(username)
     for i in stocks:
         networth+= i[2]
@@ -117,7 +116,8 @@ def get_stock(username):
         # calculate values with update_data to get latest prices
         li.append(api.update_data(li[0])["price"] * li[1])
         output_list.append(li)
-    db.close()
+    #db.close()
+    calculate_networth(username, output_list)
     return output_list
 
 # for testing ########

@@ -120,6 +120,7 @@ def update_networth(user, amount):
     amount = str(amount)
     c.execute("UPDATE users SET networth ='" + amount + "' WHERE usernames = '" + user + "'")
     db.commit()
+    #db.close()
 
 
 # Functions to be done later .  . .
