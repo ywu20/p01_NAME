@@ -79,4 +79,5 @@ andrewJ, patrickG -- 2021-12-15 9:14
 
 yuqingW -- 2021-12-15 10:58
 - Working codes now. 
-- manage stock flask displaying
+- Manage stock flask displaying
+- No update_data when buying stocks so it's faster.  
