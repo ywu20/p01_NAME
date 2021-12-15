@@ -76,3 +76,6 @@ the price getting a little bit faster...
 andrewJ, patrickG -- 2021-12-15 9:14
 - Implement render_image endpoint
 - WILL ADD SEARCH FUNCIONALITY LATER
+
+yuqingW -- 2021-12-15 10:58
+- Working codes now. 
