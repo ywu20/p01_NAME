@@ -70,4 +70,4 @@ def plot(data):
 def save_to_file(content, file_name):
     pass
     #save things to file given a file name
-
+#print(update_data("AAPL"))

@@ -72,3 +72,7 @@ elizaK -- 2021-12-14 10:50
 - the buy stock thing definitely works now
 - tested the function and modified stock/user.py to make
 the price getting a little bit faster...
+
+andrewJ, patrickG -- 2021-12-15 9:14
+- Implement render_image endpoint
+- WILL ADD SEARCH FUNCIONALITY LATER

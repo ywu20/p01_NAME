@@ -21,6 +21,13 @@ P01 -- The Biggest Loser
 
     <body>
         <h1 class="header"> Manage Stocks! </h1>
+      {% for stock in stocks%}
+        {{stock[0]}}, {{stock[1]}}, {{stock[2]}}
+        <br>
+      {%endfor%}
+      networth: {{networth}}
+      cash: {{cash}}
+      
     </body>
 
 </html>
