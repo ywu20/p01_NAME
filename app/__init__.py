@@ -147,7 +147,12 @@ def manage_stocks():
     if 'username' not in session:
         return render_template('login.html')
 
-    return render_template('manage_stocks.html')
+    # the networth and cash don't align yet because updating timing not right, fixing database to include a new column of prices.
+    stocks = stock.get_stock(session['username'])
+    networth = user.get_networth(session['username'])
+    cash = user.get_cash(session['username'])
+    return render_template('manage_stocks.html', stocks = stocks, networth = networth, cash = cash)
+
 
 @app.route("/buy_stocks", methods=['GET', 'POST'])
 def buy_stocks():
@@ -231,12 +236,12 @@ def buy_share():
         stock_symbol = request.form.get("symbol")
         print(stock_symbol)
 
-    change_price = float(price) * int(requested_shares)
+    # change_price = float(price) * int(requested_shares)
     error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares))
-    # cash decreases
-    if (user.update_cash(session['username'], -1 * change_price)):
+    # cash decreases - handles this part in buy_sell now.
+    #if (user.update_cash(session['username'], -1 * change_price)):
         # net worth increases
-        user.update_networth(session['username'], change_price)
+    #    user.update_networth(session['username'], change_price)
     return render_template("buy_stocks.html", error=message)
 
 if __name__ == "__main__":
