@@ -80,4 +80,4 @@ andrewJ, patrickG -- 2021-12-15 9:14
 yuqingW -- 2021-12-15 10:58
 - Working codes now. 
 - Manage stock flask displaying
-- No update_data when buying stocks so it's faster.  
+- No update_data when buying stocks so it's faster. Also fixed the calculate networth part so the networth now actually updates correctly.
