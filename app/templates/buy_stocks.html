@@ -18,7 +18,7 @@ P01 -- The Biggest Loser
       <li><a href="/leaderboard">Leaderboard</a></li>
       <li><a href="/logout">Logout</a></li>
     </ul>
-    
+
     <h1>{{error}}</h1>
     <form action="/search" method="post">
       <label for="search">Search for a stock using symbol:</label><br>
@@ -26,7 +26,7 @@ P01 -- The Biggest Loser
       <input type="submit">
     </form>
     <br>
-    
+
     {% if stock %}
       <h3>Here is the stock: {{search}}</h3>
       <ul>
@@ -42,5 +42,10 @@ P01 -- The Biggest Loser
         <input type="submit" value="Buy Shares">
       </form>
     {% endif %}
-
+    <form class="" action="/render_image" method="post">
+        <input class="btn btn-primary" type="submit" value="Render Image">
+    </form>
+    {% if img|length > 1 %}
+       <img src={{img}}>
+    {% endif %}
 </html>

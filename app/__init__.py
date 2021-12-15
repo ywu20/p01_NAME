@@ -7,9 +7,19 @@
 
 from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for
-import user 
+import user
 import stock
 import api
+import mplfinance as fplt
+import pandas as pd
+from datetime import datetime
+import yfinance as yf
+
+# DO NOT CHANGE THIS
+import matplotlib
+matplotlib.use('Agg')
+# end of do not change - housekeeping
+
 
 app = Flask(__name__)
 
@@ -96,7 +106,7 @@ def rAuthenticate():
 
 
 @app.route("/dashboard", methods=['GET', 'POST'])
-def dashboard(): 
+def dashboard():
     ''' Displays currently logged in user's dashboard '''
    # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
@@ -130,7 +140,7 @@ def logout():
 
 @app.route("/manage_stocks", methods=['GET', 'POST'])
 def manage_stocks():
-    ''' 
+    '''
         This is going to allow you to look at your stocks in more detail and also sell shares of them
     '''
    # Renders response if there is a user logged in, else render login page
@@ -151,49 +161,83 @@ def buy_stocks():
 
     return render_template("buy_stocks.html", stock=False)
 
+@app.route("/render_image", methods=['GET','POST'])
+def render_image():
+    args = {
+        "ticker" : "MRNA",
+        "resolution" : "D",
+        "fromYear" : 2021,
+        "fromMonth" : 11,
+        "fromDay" : 9,
+        "toYear" : 2021,
+        "toMonth" : 12,
+        "toDay" : 11
+    }
+    startDate = f'{args["fromYear"]}-{args["fromMonth"]}-{args["fromDay"]}'
+    endDate = f'{args["toYear"]}-{args["toMonth"]}-{args["toDay"]}'
+    # ^^ some strings that'll be useful later
+
+    if args["toYear"] - args["fromYear"] > 2:
+        #sometimes there is just so much data that it becomes pointless to try chart a candle
+        #this might be remedied in other ways, but I need to sit on it right now
+        mode = "line"
+    else:
+        mode = "candle"
+    fplt.plot(
+            yf.download(
+                args["ticker"],
+                start=startDate ,
+                end=endDate),
+            type=mode,
+            title=f'{args["ticker"]}, from {startDate} to {endDate}',
+            ylabel='Price ($)',
+            savefig=f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png' # for saving the graph
+        )
+    imghref = f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png'
+    return render_template("buy_stocks.html", stock=False, img = imghref)
+
 @app.route("/search", methods=['GET', 'POST'])
 def search():
     # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
         return render_template('login.html')
-    
+
     if (request.method == "POST"):
         query = request.form.get("search")
-    
+
     info = api.pull_data(query)
     if (not info):
         return render_template("buy_stocks.html", stock=False,error="no such stock")
-    
+
+    print(info)
     name = info['officialName']
     price = info['price']
     website = info['website']
 
-    return render_template("buy_stocks.html", symbol=query,stock=True,stock_name=name, stock_price=price, stock_website=website, search = query) 
+    return render_template("buy_stocks.html", symbol=query,stock=True,stock_name=name, stock_price=price, stock_website=website, search = query)
 
 @app.route("/buy_share", methods=['GET', 'POST'])
 def buy_share():
     if 'username' not in session:
         return render_template('login.html')
-    
+
     message = ""
     if (request.method == "POST"):
         requested_shares = request.form.get("num_shares")
+        message = str(requested_shares) + " stock shares purchased!"
+        print(message)
         price = request.form.get("price")
         print(price)
         stock_symbol = request.form.get("symbol")
         print(stock_symbol)
 
     change_price = float(price) * int(requested_shares)
-    print(change_price)
-    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
-    print(stock.get_stock(session['username']))
-
+    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares))
     # cash decreases
     if (user.update_cash(session['username'], -1 * change_price)):
         # net worth increases
         user.update_networth(session['username'], change_price)
-
-    return render_template("buy_stocks.html", error=str(error))
+    return render_template("buy_stocks.html", error=message)
 
 if __name__ == "__main__":
     app.debug = True
