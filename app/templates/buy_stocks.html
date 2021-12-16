@@ -12,40 +12,43 @@ P01 -- The Biggest Loser
     </head>
 
     <ul>
-      <li><a href="/dashboard">Dashboard</a></li>
-      <li><a href="/manage_stocks">Manage Stocks</a></li>
-      <li><a href="/buy_stocks">Buy Stocks</a></li>
-      <li><a href="/leaderboard">Leaderboard</a></li>
-      <li><a href="/logout">Logout</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/manage_stocks">Manage Stocks</a></li>
+        <li><a href="/buy_stocks">Buy Stocks</a></li>
+        <li><a href="/leaderboard">Leaderboard</a></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
 
     <h1>{{error}}</h1>
     <form action="/search" method="post">
-      <label for="search">Search for a stock using symbol:</label><br>
-      <input type="text" name="search">
-      <input type="submit">
+        <label for="search">Search for a stock using symbol:</label><br>
+        <input type="text" name="search">
+        <input type="submit">
     </form>
     <br>
 
     {% if stock %}
-      <h3>Here is the stock: {{search}}</h3>
-      <ul>
-        <li>Name: {{stock_name}}</li>
-        <li>Price: {{stock_price}}</li>
-        <li><a href={{stock_website}}>Learn More</a></li>
-      </ul>
-      <form action="/buy_share" method="post">
-        <label for="num_shares">How many shares would you like?</label>
-        <input type="text" name="num_shares">
-        <input type="hidden" name="symbol" value="{{symbol}}">
-        <input type="hidden" name="price" value="{{stock_price}}">
-        <input type="submit" value="Buy Shares">
-      </form>
+        <h3>Here is the stock: {{search}}</h3>
+        <ul>
+            <li>Name: {{stock_name}}</li>
+            <li>Price: {{stock_price}}</li>
+            <li><a href={{stock_website}}>Learn More</a></li>
+        </ul>
     {% endif %}
-    <form class="" action="/render_image" method="post">
-        <input class="btn btn-primary" type="submit" value="Render Image">
-    </form>
+
     {% if img|length > 1 %}
-       <img src={{img}}>
+        <h3>Graph of {{search}} Stock:</h3><br>
+        <img src={{img}}>
+    {% endif %}
+
+    <br>
+    {% if stock %}
+        <form action="/buy_share" method="post">
+            <label for="num_shares">How many shares would you like?</label>
+            <input type="text" name="num_shares">
+            <input type="hidden" name="symbol" value="{{symbol}}">
+            <input type="hidden" name="price" value="{{stock_price}}">
+            <input type="submit" value="Buy Shares">
+        </form>
     {% endif %}
 </html>

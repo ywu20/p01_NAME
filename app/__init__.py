@@ -166,10 +166,24 @@ def buy_stocks():
 
     return render_template("buy_stocks.html", stock=False)
 
-@app.route("/render_image", methods=['GET','POST'])
-def render_image():
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    # Renders response if there is a user logged in, else render login page
+    if 'username' not in session:
+        return render_template('login.html')
+
+    if (request.method == "POST"):
+        query = request.form.get("search")
+
+    info = api.pull_data(query)
+
+    if (not info):
+        return render_template("buy_stocks.html", stock=False, error="no such stock")
+
+    ###### IMAGE STUFF #######
     args = {
-        "ticker" : "MRNA",
+        "ticker" : query,
         "resolution" : "D",
         "fromYear" : 2021,
         "fromMonth" : 11,
@@ -199,26 +213,20 @@ def render_image():
             savefig=f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png' # for saving the graph
         )
     imghref = f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png'
-    return render_template("buy_stocks.html", stock=False, img = imghref)
-
-@app.route("/search", methods=['GET', 'POST'])
-def search():
-    # Renders response if there is a user logged in, else render login page
-    if 'username' not in session:
-        return render_template('login.html')
-
-    if (request.method == "POST"):
-        query = request.form.get("search")
-
-    info = api.pull_data(query)
-    if (not info):
-        return render_template("buy_stocks.html", stock=False,error="no such stock")
+    #########################
 
     name = info['officialName']
     price = info['price']
     website = info['website']
 
-    return render_template("buy_stocks.html", symbol=query,stock=True,stock_name=name, stock_price=price, stock_website=website, search = query)
+    return render_template("buy_stocks.html", symbol=query,
+                                              stock=True,
+                                              stock_name=name,
+                                              stock_price=price,
+                                              stock_website=website,
+                                              search = query,
+                                              img = imghref
+                                              )
 
 @app.route("/buy_share", methods=['GET', 'POST'])
 def buy_share():
