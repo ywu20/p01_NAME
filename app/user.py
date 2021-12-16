@@ -156,4 +156,4 @@ def fetch_leaderboard():
 #print(get_cash("andrew"))
 #update_networth("andrew",10)
 #print(get_networth("andrew"))
-fetch_leaderboard()
+# fetch_leaderboard()
