@@ -21,10 +21,9 @@ P01 -- The Biggest Loser
 
     <body>
         <h1 class="header"> Leaderboard </h1>
-        <li>brian moran</li>
-        <li>topher mykolyk</li>
-        <li>rhonda rosenthal</li>
-        <li>patrick ging</li>
+        {% for networth, user in leaderboard %}
+            <li>{{user}} has a networth of {{networth}}</li>
+        {% endfor %}
     </body>
 
 </html>

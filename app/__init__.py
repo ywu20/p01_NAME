@@ -123,7 +123,9 @@ def leaderboard():
     if 'username' not in session:
         return render_template('login.html')
 
-    return render_template('leaderboard.html', username=session['username'])
+    leaderboard = user.fetch_leaderboard()
+
+    return render_template('leaderboard.html', username=session['username'], leaderboard=leaderboard)
 
 
 @app.route("/logout", methods=['GET', 'POST'])
@@ -227,6 +229,7 @@ def search():
                                               search = query,
                                               img = imghref
                                               )
+
 
 @app.route("/buy_share", methods=['GET', 'POST'])
 def buy_share():

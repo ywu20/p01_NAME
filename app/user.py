@@ -122,6 +122,23 @@ def update_networth(user, amount):
     db.commit()
     #db.close()
 
+def fetch_leaderboard():
+    ''' Fetch list of users sorted by networth '''
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT * FROM users")
+
+    leaderboard = []
+    for a_tuple in c.fetchall():
+        networth = a_tuple[3]
+        user = a_tuple[0]
+        leaderboard.append((networth, user))
+
+    leaderboard.sort()
+
+    return leaderboard
+
 
 # Functions to be done later .  . .
 # def leaderboard():
@@ -139,3 +156,4 @@ def update_networth(user, amount):
 #print(get_cash("andrew"))
 #update_networth("andrew",10)
 #print(get_networth("andrew"))
+fetch_leaderboard()
