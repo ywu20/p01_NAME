@@ -246,12 +246,15 @@ def buy_share():
 
     # change_price = float(price) * int(requested_shares)
     error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
-    # cash decreases - handles this part in buy_sell now.
-    #if (user.update_cash(session['username'], -1 * change_price)):
-        # net worth increases
-        #user.update_networth(session['username'], change_price)
 
     return render_template("buy_stocks.html", error=str(error))
+
+@app.route("/sell_share", methods=['GET', 'POST'])
+def sell_share():
+    if 'username' not in session:
+        return render_template('login.html')
+    
+    return render_template("sell_stock.html", symbol=request.form.get("symbol"))
 
 if __name__ == "__main__":
     app.debug = True
