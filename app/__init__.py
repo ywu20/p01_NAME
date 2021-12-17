@@ -31,7 +31,14 @@ def index():
     # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
         return render_template('login.html')
-    return render_template("dashboard.html", username=session['username'])
+    stocks = stock.get_stock(session['username'])
+    networth = user.get_networth(session['username'])
+    cash = user.get_cash(session['username'])
+    return render_template('dashboard.html', username=session['username'],
+                                             stocks = stocks,
+                                             networth = networth,
+                                             cash = cash
+                                             )
 
 
 @app.route("/auth", methods=['GET','POST'])
@@ -168,6 +175,9 @@ def buy_stocks():
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
+    '''
+        klsdjffd
+    '''
     # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
         return render_template('login.html')

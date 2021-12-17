@@ -21,6 +21,18 @@ P01 -- The Biggest Loser
 
     <body>
         <h1 class="header"> {{username}}'s Dashboard </h1>
+        <h3>
+            networth: {{networth}}
+            cash: {{cash}}
+        </h3>
+        {% for stock in stocks%}
+            {{stock[0]}}, {{stock[1]}}, {{stock[2]}}
+            <form action="/sell_share" method="post">
+                <input type="hidden" name="symbol" value="{{stock[0]}}">
+                <input type="submit" value="Sell Some Shares">
+            </form>
+            <br>
+        {%endfor%}
     </body>
 
 </html>
