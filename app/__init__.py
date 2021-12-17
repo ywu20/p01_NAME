@@ -109,14 +109,19 @@ def rAuthenticate():
                     return render_template('register.html', taken = True)
 
 
-@app.route("/dashboard", methods=['GET', 'POST'])
-def dashboard():
+@app.route("/dashboard/<username>", methods=['GET', 'POST'])
+def dashboard(username):
     ''' Displays currently logged in user's dashboard '''
    # Renders response if there is a user logged in, else render login page
-    if 'username' not in session:
-        return render_template('login.html')
+    stocks = stock.get_stock(username)
+    networth = user.get_networth(username)
+    cash = user.get_cash(username)
+    return render_template('dashboard.html', username=username,
+                                             stocks = stocks,
+                                             networth = networth,
+                                             cash = cash
+                                             )
 
-    return render_template('dashboard.html', username=session['username'])
 
 
 @app.route("/leaderboard", methods=['GET', 'POST'])
@@ -232,7 +237,7 @@ def sell_share():
 
     stock_symbol = request.form.get("symbol")
     shares = stock.get_shares_of_stock(session['username'], stock_symbol)
-    
+
     return render_template("sell_stock.html", symbol=stock_symbol, shares = shares)
 
 @app.route("/handle_sell_share", methods=['GET', 'POST'])

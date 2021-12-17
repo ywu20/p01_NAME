@@ -12,7 +12,7 @@ P01 -- The Biggest Loser
     </head>
 
     <ul>
-        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/">My Dashboard</a></li>
         <li><a href="/manage_stocks">Manage Stocks</a></li>
         <li><a href="/buy_stocks">Buy Stocks</a></li>
         <li><a href="/leaderboard">Leaderboard</a></li>
@@ -22,7 +22,7 @@ P01 -- The Biggest Loser
     <body>
         <h1 class="header"> Leaderboard </h1>
         {% for networth, user in leaderboard %}
-            <li>{{user}} has a networth of {{networth}}</li>
+            <li><a href="{{ url_for('dashboard', username = user) }}">{{user}}</a> has a networth of {{networth}}</li>
         {% endfor %}
     </body>
 
