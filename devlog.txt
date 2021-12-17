@@ -96,3 +96,4 @@ andrewJ -- 2021-12-17 9:40
 - Separated the graphing function to make it more readable 
 - Implemented basic user dashboard (could add more data)
 - Implemented clicking on other users dashboard in leaderboard 
+- Navbar start
