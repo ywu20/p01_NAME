@@ -253,8 +253,21 @@ def buy_share():
 def sell_share():
     if 'username' not in session:
         return render_template('login.html')
+
+    stock_symbol = request.form.get("symbol")
+    shares = stock.get_shares_of_stock(session['username'], stock_symbol)
     
-    return render_template("sell_stock.html", symbol=request.form.get("symbol"))
+    return render_template("sell_stock.html", symbol=stock_symbol, shares = shares)
+
+@app.route("/handle_sell_share", methods=['GET', 'POST'])
+def handle_sell_share():
+    if 'username' not in session:
+        return render_template('login.html')
+    '''
+    THEN- there's a different function that takes the number of shares
+    bought and handles it (stock.buy_sell)
+    '''
+
 
 if __name__ == "__main__":
     app.debug = True

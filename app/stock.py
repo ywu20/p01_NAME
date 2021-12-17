@@ -128,3 +128,13 @@ def get_stock(username):
 
 #get_stock("andrew")
 #calculate_networth("andrew")
+
+def get_shares_of_stock(username, stock):
+    '''
+    returns the number of shares of a specific stock a user has (using the symbol)
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT shares FROM stock_info WHERE user = (?) AND stock = (?)", (username, stock))
+    list = c.fetchall()
+    return list[0][0]
