@@ -10,10 +10,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import user
 import stock
 import api
-import mplfinance as fplt
-import pandas as pd
-from datetime import datetime
-import yfinance as yf
+import graph
 
 # DO NOT CHANGE THIS
 import matplotlib
@@ -34,7 +31,14 @@ def index():
     # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
         return render_template('login.html')
-    return render_template("dashboard.html", username=session['username'])
+    stocks = stock.get_stock(session['username'])
+    networth = user.get_networth(session['username'])
+    cash = user.get_cash(session['username'])
+    return render_template('dashboard.html', username=session['username'],
+                                             stocks = stocks,
+                                             networth = networth,
+                                             cash = cash
+                                             )
 
 
 @app.route("/auth", methods=['GET','POST'])
@@ -171,6 +175,9 @@ def buy_stocks():
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
+    '''
+        klsdjffd
+    '''
     # Renders response if there is a user logged in, else render login page
     if 'username' not in session:
         return render_template('login.html')
@@ -183,39 +190,8 @@ def search():
     if (not info):
         return render_template("buy_stocks.html", stock=False, error="no such stock")
 
-    ###### IMAGE STUFF #######
-    args = {
-        "ticker" : query,
-        "resolution" : "D",
-        "fromYear" : 2021,
-        "fromMonth" : 11,
-        "fromDay" : 9,
-        "toYear" : 2021,
-        "toMonth" : 12,
-        "toDay" : 11
-    }
-    startDate = f'{args["fromYear"]}-{args["fromMonth"]}-{args["fromDay"]}'
-    endDate = f'{args["toYear"]}-{args["toMonth"]}-{args["toDay"]}'
-    # ^^ some strings that'll be useful later
-
-    if args["toYear"] - args["fromYear"] > 2:
-        #sometimes there is just so much data that it becomes pointless to try chart a candle
-        #this might be remedied in other ways, but I need to sit on it right now
-        mode = "line"
-    else:
-        mode = "candle"
-    fplt.plot(
-            yf.download(
-                args["ticker"],
-                start=startDate ,
-                end=endDate),
-            type=mode,
-            title=f'{args["ticker"]}, from {startDate} to {endDate}',
-            ylabel='Price ($)',
-            savefig=f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png' # for saving the graph
-        )
-    imghref = f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png'
-    #########################
+    # get image href
+    imghref = graph.get_graph_href(query)
 
     name = info['officialName']
     price = info['price']
