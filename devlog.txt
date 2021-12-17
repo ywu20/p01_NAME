@@ -91,3 +91,8 @@ andrewJ -- 2021-12-15 20:58
 andrewJ, patrickG -- 2021-12-15 9:30
 - Added mplfinance howto
 - .gitkeep for static/temp to keep empty directory on github
+
+andrewJ -- 2021-12-17 9:40
+- Separated the graphing function to make it more readable 
+- Implemented basic user dashboard (could add more data)
+- Implemented clicking on other users dashboard in leaderboard 
