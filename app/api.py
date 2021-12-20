@@ -1,4 +1,4 @@
-#Name — Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
+    #Name — Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
 #Softdev
 #P01: ArRESTed Development
 #2021-12-10
@@ -43,8 +43,12 @@ def pull_data(stockName : str):
 
 
     '''
-    stockInfo = yf.Ticker(stockName.upper()).info
-    stockDiv = yf.Ticker(stockName.upper()).news
+    try:
+        stockInfo = yf.Ticker(stockName.upper()).info
+        stockDiv = yf.Ticker(stockName.upper()).news
+    except:
+        return {}
+
     if stockInfo.get("regularMarketPrice") is None:
         #the wrapper api will have @ none
         #if the ticker doesn't exist.
