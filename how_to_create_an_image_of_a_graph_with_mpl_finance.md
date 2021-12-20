@@ -23,17 +23,14 @@ For the purposes of this example, our data will be a pandas dataframe that was o
 
 The first thing you want to do is import mplfinance
 ```
-import mplfinance as fmpl
+import mplfinance as fplt
 ```
-When we want to plot a function, we use the fplt.plot() command. Using the yf.download() command for our data, we use the function as follows. 
+When we want to plot a function, we use the fplt.plot() command.  
 ```
 startDate = f'{args["fromYear"]}-{args["fromMonth"]}-{args["fromDay"]}'
 endDate = f'{args["toYear"]}-{args["toMonth"]}-{args["toDay"]}'
 fplt.plot(
-            yf.download(
-                args["ticker"],
-                start=startDate ,
-                end=endDate),
+            data_to_plot,
             type=mode,
             title=f'{args["ticker"]}, from {startDate} to {endDate}',
             ylabel='Price ($)',
@@ -46,9 +43,10 @@ One thing that is ESSENTIAL is that you give an argument for savefig. This will 
 ONLY IF YOU'RE USING IT FOR FLASK
 ```
 import matplotlib
+
+# This tells it not to try use the GUI, which will crash flask.
 matplotlib.use('Agg')
-```
-This tells it not to try use the GUI, which will crash flask.
+``` 
 ---
 
 Accurate as of (last update): 2021-12-12
