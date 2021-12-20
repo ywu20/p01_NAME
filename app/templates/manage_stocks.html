@@ -44,6 +44,7 @@ P01 -- The Biggest Loser
 
     <body>
         <h1 class="header"> Manage Stocks! </h1>
+        <h2>{{error}}</h2>
         <h3>
             networth: {{networth}}
             cash: {{cash}}
@@ -52,6 +53,7 @@ P01 -- The Biggest Loser
             {{stock[0]}}, {{stock[1]}}, {{stock[2]}}
             <form action="/sell_share" method="post">
                 <input type="hidden" name="symbol" value="{{stock[0]}}">
+                <input type="hidden" name="price" value="{{stock[2]}}">
                 <input type="submit" value="Sell Some Shares">
             </form>
             <br>

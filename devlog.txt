@@ -105,3 +105,8 @@ andrewJ -- 2021-12-17 9:40
 - Implemented basic user dashboard (could add more data)
 - Implemented clicking on other users dashboard in leaderboard 
 - Navbar start
+
+elizaK -- 2021-12-19 21:55
+- edited dashboard so you can't sell stocks from there
+- finished the selling stocks functionality
+  - you can now click on any of your stocks and sell them

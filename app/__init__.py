@@ -238,7 +238,7 @@ def sell_share():
     stock_symbol = request.form.get("symbol")
     shares = stock.get_shares_of_stock(session['username'], stock_symbol)
 
-    return render_template("sell_stock.html", symbol=stock_symbol, shares = shares)
+    return render_template("sell_stock.html", symbol=stock_symbol, shares = shares, price=request.form.get("price"))
 
 @app.route("/handle_sell_share", methods=['GET', 'POST'])
 def handle_sell_share():
@@ -248,7 +248,15 @@ def handle_sell_share():
     THEN- there's a different function that takes the number of shares
     bought and handles it (stock.buy_sell)
     '''
+    # if the amount bought is too big then return an error in the response!- should be handled in the actual function
+    error = stock.buy_sell(session['username'], request.form.get("symbol"), -1 * int(request.form.get("num_shares")), float(request.form.get("price")))
+    # update ALL of the data again just to make sure!
+    stocks = stock.get_stock(session['username'])
+    networth = user.get_networth(session['username'])
+    cash = user.get_cash(session['username'])
 
+    message = "you completed a transaction: " + str(error)
+    return render_template('manage_stocks.html', stocks = stocks, networth = networth, cash = cash, error= message)
 
 if __name__ == "__main__":
     app.debug = True
