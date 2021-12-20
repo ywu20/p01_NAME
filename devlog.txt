@@ -110,3 +110,7 @@ elizaK -- 2021-12-19 21:55
 - edited dashboard so you can't sell stocks from there
 - finished the selling stocks functionality
   - you can now click on any of your stocks and sell them
+
+elizaK and yuqingW -- 2021-12-20 9:13
+- fixed issue in sell stocks (price was wrong)
+- made all the numbers round to actual money values
