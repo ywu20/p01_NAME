@@ -114,7 +114,9 @@ def get_stock(username):
     for i in list:
         li = [i[0], i[1]]
         # calculate values with update_data to get latest prices
-        li.append(api.update_data(li[0])["price"] * li[1])
+        var = api.update_data(li[0])["price"]
+        li.append(var * li[1])
+        li.append(var)
         output_list.append(li)
     #db.close()
     calculate_networth(username, output_list)

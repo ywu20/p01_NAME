@@ -46,7 +46,6 @@ P01 -- The Biggest Loser
       <h1 class="header"> Sell Shares of {{symbol}} </h1>
       <h3>You have {{shares}} shares.</h3>
       <form action="/handle_sell_share" method="POST">
-        <!-- FORM TO INPUT AMOUNT YOU SELL HERE, REMEMBER ERROR IF TOO BIG-->
         <label for="num_shares">How many shares would you like to sell?</label>
         <input type="text" name="num_shares">
         <input type="hidden" name="symbol" value="{{symbol}}">
