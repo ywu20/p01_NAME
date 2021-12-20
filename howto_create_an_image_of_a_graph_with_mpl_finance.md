@@ -45,6 +45,7 @@ ONLY IF YOU'RE USING IT FOR FLASK
 import matplotlib
 
 # This tells it not to try use the GUI, which will crash flask.
+
 matplotlib.use('Agg')
 ``` 
 ---
