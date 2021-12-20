@@ -36,8 +36,8 @@ def index():
     cash = user.get_cash(session['username'])
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
-                                             networth = networth,
-                                             cash = cash
+                                             networth = round(float(networth),2),
+                                             cash = round(float(cash),2)
                                              )
 
 
@@ -118,8 +118,8 @@ def dashboard(username):
     cash = user.get_cash(username)
     return render_template('dashboard.html', username=username,
                                              stocks = stocks,
-                                             networth = networth,
-                                             cash = cash
+                                             networth = round(float(networth),2),
+                                             cash = round(float(cash), 2)
                                              )
 
 
@@ -162,7 +162,7 @@ def manage_stocks():
     stocks = stock.get_stock(session['username'])
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
-    return render_template('manage_stocks.html', stocks = stocks, networth = networth, cash = cash)
+    return render_template('manage_stocks.html', stocks = stocks, networth = round(float(networth),2), cash = round(float(cash),2))
 
 
 @app.route("/buy_stocks", methods=['GET', 'POST'])
@@ -238,7 +238,7 @@ def sell_share():
     stock_symbol = request.form.get("symbol")
     shares = stock.get_shares_of_stock(session['username'], stock_symbol)
 
-    return render_template("sell_stock.html", symbol=stock_symbol, shares = shares, price=request.form.get("price"))
+    return render_template("sell_stock.html", symbol=stock_symbol, shares = shares, price=round(float(request.form.get("price")), 2))
 
 @app.route("/handle_sell_share", methods=['GET', 'POST'])
 def handle_sell_share():
@@ -256,7 +256,7 @@ def handle_sell_share():
     cash = user.get_cash(session['username'])
 
     message = "you completed a transaction: " + str(error)
-    return render_template('manage_stocks.html', stocks = stocks, networth = networth, cash = cash, error= message)
+    return render_template('manage_stocks.html', stocks = stocks, networth = round(float(networth),2), cash = round(float(cash), 2), error= message)
 
 if __name__ == "__main__":
     app.debug = True
