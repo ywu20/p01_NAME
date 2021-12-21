@@ -34,6 +34,8 @@ def index():
     stocks = stock.get_stock(session['username'])
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
+
+    
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
                                              networth = round(float(networth),2),
