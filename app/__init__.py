@@ -11,6 +11,7 @@ import user
 import stock
 import api
 import graph
+import fun_facts
 
 # DO NOT CHANGE THIS
 import matplotlib
@@ -35,11 +36,15 @@ def index():
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
 
+    fact = fun_facts.get_fact()
+    num_fact = fun_facts.numbers(int(cash) % 100)
     
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
                                              networth = round(float(networth),2),
-                                             cash = round(float(cash),2)
+                                             cash = round(float(cash),2),
+                                             fact = fact,
+                                             num_fact = num_fact
                                              )
 
 
