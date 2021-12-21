@@ -16,4 +16,11 @@ def get_fact():
     print("error finding the api")
     return "error finding the api"
 
-# print(get_fact())
+def numbers(num):
+    try:
+        r = urllib.request.urlopen("http://numbersapi.com/" + str(num))
+        fact = r.read().decode('UTF-8')
+        return fact
+    except:
+        print("numbers api failed.")
+        return "error"
