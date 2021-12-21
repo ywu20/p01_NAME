@@ -24,3 +24,9 @@ def numbers(num):
     except:
         print("numbers api failed.")
         return "error"
+
+def meme():
+    r = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme")
+    JSON = r.read()
+    img_url = json.loads(JSON)['url']
+    return img_url
