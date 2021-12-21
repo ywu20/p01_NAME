@@ -38,7 +38,7 @@ def index():
 
     fact = fun_facts.get_fact()
     num_fact = fun_facts.numbers(int(cash) % 100)
-    
+
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
                                              networth = round(float(networth),2),
@@ -141,7 +141,7 @@ def leaderboard():
 
     leaderboard = user.fetch_leaderboard()
 
-    return render_template('leaderboard.html', username=session['username'], leaderboard=leaderboard)
+    return render_template('leaderboard.html', username=session['username'], leaderboard=enumerate(leaderboard))
 
 
 @app.route("/logout", methods=['GET', 'POST'])
