@@ -38,7 +38,10 @@ def index():
 
     fact = fun_facts.get_fact()
     num_fact = fun_facts.numbers(int(cash) % 100)
+<<<<<<< HEAD
     meme = fun_facts.meme()
+=======
+>>>>>>> 57027f93a803e7a3d56f67ccfede1a8d0ac88c15
 
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
@@ -143,7 +146,7 @@ def leaderboard():
 
     leaderboard = user.fetch_leaderboard()
 
-    return render_template('leaderboard.html', username=session['username'], leaderboard=leaderboard)
+    return render_template('leaderboard.html', username=session['username'], leaderboard=enumerate(leaderboard))
 
 
 @app.route("/logout", methods=['GET', 'POST'])
