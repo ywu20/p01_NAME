@@ -133,7 +133,7 @@ def fetch_leaderboard():
     for a_tuple in c.fetchall():
         networth = a_tuple[3]
         user = a_tuple[0]
-        leaderboard.append((networth, user))
+        leaderboard.append((round(networth,2), user))
 
     leaderboard.sort()
 
