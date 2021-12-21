@@ -38,13 +38,15 @@ def index():
 
     fact = fun_facts.get_fact()
     num_fact = fun_facts.numbers(int(cash) % 100)
-    
+    meme = fun_facts.meme()
+
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
                                              networth = round(float(networth),2),
                                              cash = round(float(cash),2),
                                              fact = fact,
-                                             num_fact = num_fact
+                                             num_fact = num_fact,
+                                             meme = meme
                                              )
 
 
