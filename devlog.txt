@@ -117,3 +117,12 @@ andrewJ and patrickG -- 2021-12-20 9:00
 elizaK and yuqingW -- 2021-12-20 9:13
 - fixed issue in sell stocks (price was wrong)
 - made all the numbers round to actual money values
+
+yuqingW -- 2021-12-21 9:19
+- did the numbers api
+- did the meme api
+
+elizaK -- 2021-12-21 9:19
+- did the fun facts api
+- got all the facts to render on the dashboard
+

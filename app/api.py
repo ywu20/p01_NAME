@@ -1,4 +1,4 @@
-    #Name — Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
+#Name — Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
 #Softdev
 #P01: ArRESTed Development
 #2021-12-10
