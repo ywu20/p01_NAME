@@ -26,6 +26,14 @@ def get_graph_href(query):
             mode = "line"
         else:
             mode = "candle"
+        
+        print (yf.download(
+                    args["ticker"],
+                    start=startDate ,
+                    end=endDate))
+
+        return 0
+
         fplt.plot(
                 yf.download(
                     args["ticker"],
@@ -39,3 +47,5 @@ def get_graph_href(query):
         return f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png'
     except:
         return 'static/temp/Error.png'
+
+get_graph_href("VXRT")

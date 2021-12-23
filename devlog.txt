@@ -131,3 +131,6 @@ patrickG -- 2021-12-21 19:21
   - adding in news api
   - working on the cryptocurrency data
   - plan on implementing their respective features
+
+patrickG -- 2021-12-21 20:56
+  - Added cryptoData graphing function using the coingecko api
