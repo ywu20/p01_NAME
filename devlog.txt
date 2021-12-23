@@ -126,3 +126,8 @@ elizaK -- 2021-12-21 9:19
 - did the fun facts api
 - got all the facts to render on the dashboard
 
+
+patrickG -- 2021-12-21 19:21
+  - adding in news api
+  - working on the cryptocurrency data
+  - plan on implementing their respective features
