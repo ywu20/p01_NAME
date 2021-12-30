@@ -32,8 +32,6 @@ def get_graph_href(query):
                     start=startDate ,
                     end=endDate))
 
-        return 0
-
         fplt.plot(
                 yf.download(
                     args["ticker"],

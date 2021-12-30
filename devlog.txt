@@ -134,3 +134,9 @@ patrickG -- 2021-12-21 19:21
 
 patrickG -- 2021-12-21 20:56
   - Added cryptoData graphing function using the coingecko api
+
+patrickG -- 2021-12-30 11:23 
+  -Fixed bug with graph search
+  -implementing the cryptocurrency functions into search
+  - currently testing potential errors on windows :( 
+  - more to be seen in the next few hours lmao

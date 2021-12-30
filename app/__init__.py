@@ -12,6 +12,8 @@ import stock
 import api
 import graph
 import fun_facts
+import cryptoData
+
 
 # DO NOT CHANGE THIS
 import matplotlib
@@ -202,6 +204,9 @@ def search():
     info = api.pull_data(query)
 
     if (not info):
+
+        info = cryptoData.getTodayInfo(query)
+
         return render_template("buy_stocks.html", stock=False, error="no such stock")
 
     # get image href
