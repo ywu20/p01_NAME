@@ -4,7 +4,14 @@ from datetime import datetime
 import yfinance as yf
 
 def get_graph_href(query):
+    '''
+    will generate a graph of the securities data
 
+    returns the path way to it
+
+    params query, str: the ticker of the security
+    if there's an error it will return the error .png
+    '''
     try:
         args = {
             "ticker" : query,
@@ -27,10 +34,6 @@ def get_graph_href(query):
         else:
             mode = "candle"
         
-        print (yf.download(
-                    args["ticker"],
-                    start=startDate ,
-                    end=endDate))
 
         fplt.plot(
                 yf.download(
@@ -45,5 +48,3 @@ def get_graph_href(query):
         return f'static/temp/{args["ticker"]}_from_{startDate}_to_{endDate}.png'
     except:
         return 'static/temp/Error.png'
-
-get_graph_href("VXRT")

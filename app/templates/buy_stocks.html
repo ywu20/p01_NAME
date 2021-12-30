@@ -53,7 +53,7 @@ P01 -- The Biggest Loser
     <br>
 
     {% if stock %}
-        <h3>Here is the stock: {{search}}</h3>
+        <h3>Here is: {{search}}</h3>
         <ul>
             <li>Name: {{stock_name}}</li>
             <li>Price: {{stock_price}}</li>
@@ -67,7 +67,7 @@ P01 -- The Biggest Loser
     {% endif %}
 
     <br>
-    {% if stock %}
+    {% if stock and not isCrypto%}
         <form action="/buy_share" method="post">
             <label for="num_shares">How many shares would you like?</label>
             <input type="text" name="num_shares">

@@ -198,17 +198,32 @@ def search():
     if 'username' not in session:
         return render_template('login.html')
 
+    if request.method == "GET":
+        return redirect("/buy_stocks")
+
     if (request.method == "POST"):
         query = request.form.get("search")
+
 
     info = api.pull_data(query)
 
     if (not info):
-
+        #two possibilities, it's a cryptocurrency or it's something that we don't have
         info = cryptoData.getTodayInfo(query)
 
-        return render_template("buy_stocks.html", stock=False, error="no such stock")
+        if info.get("error") is not None:
+            return render_template("buy_stocks.html", stock=False, error="no such stock")
 
+        else:
+            return render_template("buy_stocks.html", 
+                symbol=info["symbol"],
+                stock=True,
+                stock_price=info["market_data"]['current_price']['usd'],
+                stock_name= info['name'],
+                stock_website= f'https://www.coingecko.com/en/coins/{query}',
+                search = query,
+                img = cryptoData.getOHLC(query),
+                isCrypto=True)
     # get image href
     imghref = graph.get_graph_href(query)
 
@@ -222,7 +237,8 @@ def search():
                                               stock_price=price,
                                               stock_website=website,
                                               search = query,
-                                              img = imghref
+                                              img = imghref,
+                                              isCrypto = False
                                               )
 
 

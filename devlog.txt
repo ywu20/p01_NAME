@@ -140,3 +140,9 @@ patrickG -- 2021-12-30 11:23
   -implementing the cryptocurrency functions into search
   - currently testing potential errors on windows :( 
   - more to be seen in the next few hours lmao
+
+patrickG -- 2021-12-30 15:09
+ - added search functionality to the cryptocurrency
+ - disabiled the buy functionality for it. 
+ - implementing the graph for it as well ie: ravencoin
+ - more to be implementing on the news

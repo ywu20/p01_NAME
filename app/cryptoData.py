@@ -43,6 +43,4 @@ def getOHLC(ticker : str, days: int = 365):
         ylabel='Price ($)',
         savefig=f'static/temp/{ticker}_for_{days}_days.png')
 
-
-print(getTodayInfo("bitcoin"))
-print(getTodayInfo("bgffd"))
+	return f'static/temp/{ticker}_for_{days}_days.png'
