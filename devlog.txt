@@ -152,3 +152,6 @@ patrickG -- 2021-12-30 15:09
 
 patrickG -- 2021-12-31 14:30
  -fixing bug where the leaderboard hrefs didnt include the users
+
+yuqingW -- 2021-12-31 14:43
+ - Add others' profile html
