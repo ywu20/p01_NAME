@@ -13,6 +13,7 @@ import api
 import graph
 import fun_facts
 import cryptoData
+import random
 
 
 # DO NOT CHANGE THIS
@@ -41,14 +42,24 @@ def index():
     fact = fun_facts.get_fact()
     num_fact = fun_facts.numbers(int(cash) % 100)
     #meme = fun_facts.meme()
+    rand_num = 0
+    lottery = False
+    if request.method == 'POST' and request.form.get("lottery") == 'Lottery':
+        lottery = True
+        rand_num = random.randint(-100, 100)
+        num_fact = fun_facts.numbers(abs(rand_num))
+        user.update_cash(session['username'],rand_num)
+        user.update_networth(session['username'], user.get_networth(session['username']) + rand_num)
 
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
                                              networth = round(float(networth),2),
                                              cash = round(float(cash),2),
                                              fact = fact,
-                                             num_fact = num_fact#,
+                                             num_fact = num_fact,
                                              #meme = meme
+                                             lottery = lottery,
+                                             rand_num = rand_num
                                              )
 
 
@@ -215,7 +226,7 @@ def search():
             return render_template("buy_stocks.html", stock=False, error="no such stock")
 
         else:
-            return render_template("buy_stocks.html", 
+            return render_template("buy_stocks.html",
                 symbol=info["symbol"],
                 stock=True,
                 stock_price=info["market_data"]['current_price']['usd'],

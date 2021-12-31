@@ -43,21 +43,36 @@ P01 -- The Biggest Loser
     </nav>
 
     <body>
-        <h1 class="header"> {{username}}'s Dashboard </h1>
-        <h3>
-            networth: {{networth}}
-            cash: {{cash}}
-        </h3>
-        {% for stock in stocks%}
-            {{stock[0]}}, {{stock[1]}}, {{stock[2]}}<br>
-        {%endfor%}
-        <br>
+
         <h2>
-            Fun Fact of the Day!! <br>
-            {{fact}} <br><br>
-            Fun Number Fact of the Day (based on the last two digits of your cash)!! <br>
-            {{num_fact}}
-            <br/><br/>
+            {% if lottery %}
+            <!-- fun fact api doesn't work for some reason so maybe we just don't need it
+              Fun Fact of the Day!! <br>
+              {{fact}} <br><br>
+            -->
+            You got {{rand_num}}<br/>
+              Fun Number Fact based on the absolute value of the amout you got!! <br>
+              {{num_fact}}
+              <br/><br/>
+              <form action = "/" method = "POST">
+                <input type = "submit" value = "Back">
+              </form>
+              {%else%}
+              <h1 class="header"> {{username}}'s Dashboard </h1>
+              <h3>
+                  networth: {{networth}}
+                  cash: {{cash}}
+              </h3>
+              {% for stock in stocks%}
+                  {{stock[0]}}, {{stock[1]}}, {{stock[2]}}<br>
+              {%endfor%}
+              <br>
+                <form action = "/" method = "POST">
+                  <p> Lottery ! </p>
+                  <input type = "submit" value = "Lottery" name = "lottery">
+                </form>
+
+              {% endif %}
             <!--
             Fun Meme of the Day!
             <img src ={{meme}}></img>
