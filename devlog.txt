@@ -146,3 +146,6 @@ patrickG -- 2021-12-30 15:09
  - disabiled the buy functionality for it. 
  - implementing the graph for it as well ie: ravencoin
  - more to be implementing on the news
+ 
+ yuqingW -- 2021-12-31 12:36
+ - added lottery features
