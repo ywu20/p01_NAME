@@ -149,3 +149,6 @@ patrickG -- 2021-12-30 15:09
  
  yuqingW -- 2021-12-31 12:36
  - added lottery features
+
+patrickG -- 2021-12-31 14:30
+ -fixing bug where the leaderboard hrefs didnt include the users
