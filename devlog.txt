@@ -156,3 +156,6 @@ patrickG -- 2021-12-31 14:30
 patrickG -- 2021-12-31 15:42
 - adding in news features
 - adding it to templates
+
+yuqingW -- 2021-12-31 14:43
+ - Add others' profile html

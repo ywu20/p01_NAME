@@ -135,10 +135,12 @@ def rAuthenticate():
 def dashboard(username):
     ''' Displays currently logged in user's dashboard '''
    # Renders response if there is a user logged in, else render login page
+    print("hellos")
     stocks = stock.get_stock(username)
     networth = user.get_networth(username)
     cash = user.get_cash(username)
-    return render_template('dashboard.html', username=username,
+
+    return render_template('others.html', username=username,
                                              stocks = stocks,
                                              networth = round(float(networth),2),
                                              cash = round(float(cash), 2)
