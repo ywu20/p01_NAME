@@ -21,7 +21,8 @@ def grabByTicker(symbol : str):
 
 	args = {
 		"q": symbol,
-		"token" : "9bb85f4db5a4403f019be1c3f437a788"}
+		"token" : "9bb85f4db5a4403f019be1c3f437a788",
+		"lang": "en"}
 
 	return json.loads(r.get(url, params=args).text)["articles"]
 

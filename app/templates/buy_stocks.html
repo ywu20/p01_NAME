@@ -76,4 +76,15 @@ P01 -- The Biggest Loser
             <input type="submit" value="Buy Shares">
         </form>
     {% endif %}
+
+    {% if stock %}
+        {% for article in news %}
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{article['url']}}"> <h5 class="card-title">{{article["title"]}}</h5> </a>
+                    <p class="card-text">{{article["description"]}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 </html>

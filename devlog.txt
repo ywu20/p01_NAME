@@ -152,3 +152,7 @@ patrickG -- 2021-12-30 15:09
 
 patrickG -- 2021-12-31 14:30
  -fixing bug where the leaderboard hrefs didnt include the users
+
+patrickG -- 2021-12-31 15:42
+- adding in news features
+- adding it to templates

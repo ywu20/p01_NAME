@@ -14,7 +14,7 @@ import graph
 import fun_facts
 import cryptoData
 import random
-
+import news
 
 # DO NOT CHANGE THIS
 import matplotlib
@@ -234,7 +234,8 @@ def search():
                 stock_website= f'https://www.coingecko.com/en/coins/{query}',
                 search = query,
                 img = cryptoData.getOHLC(query),
-                isCrypto=True)
+                isCrypto=True,
+                news=news.grabByTicker(query))
     # get image href
     imghref = graph.get_graph_href(query)
 
@@ -249,7 +250,8 @@ def search():
                                               stock_website=website,
                                               search = query,
                                               img = imghref,
-                                              isCrypto = False
+                                              isCrypto = False,
+                                              news=news.grabByTicker(query)
                                               )
 
 
