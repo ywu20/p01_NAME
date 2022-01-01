@@ -10,7 +10,9 @@ P01 -- The Biggest Loser
         <title> Manage Stocks </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../static/css/global.css">
-        <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">    </head>
+        <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">    
+        <link rel="stylesheet" type="text/css" href="../static/css/manage_stocks.css">    
+    </head>
 
     <!-- NAVBAR -->
     <div class="navbar_colors">
@@ -47,22 +49,43 @@ P01 -- The Biggest Loser
         </nav>
     </div>
 
-    <body>
-        <h1 class="header"> Manage Stocks! </h1>
+    <body class="bg-light">
+        <br>
+        <div class="text-center">
+            <h1 class="basic_blue"><b>MANAGE STOCKS</b></h1>
+            <p class="reminder">Sell the stocks that are making money! Those won't do you any good...</p>
+        </div>
+        <br>
+
         <h2>{{error}}</h2>
-        <h3>
-            networth: {{networth}}
-            cash: {{cash}}
-        </h3>
-        {% for stock in stocks%}
-            {{stock[0]}}, {{stock[1]}}, {{stock[2]}}
-            <form action="/sell_share" method="post">
-                <input type="hidden" name="symbol" value="{{stock[0]}}">
-                <input type="hidden" name="price" value="{{stock[3]}}">
-                <input type="submit" value="Sell Some Shares">
-            </form>
-            <br>
-        {%endfor%}
+
+        <div class="profile">
+            <h3 class="info text-center">
+                networth: ${{networth}}<br>
+                cash: ${{cash}}
+            </h3>
+            <div class="stock text-center">
+                <table class="table">
+                    <thead>
+                        <th class= "basic_blue" scope="col">Stocks</th>
+                    </thead>
+                    <tbody>
+                        {% for stock in stocks%}
+                        <tr>
+                            <td>
+                              <b>{{stock[0]}}</b>: {{stock[1]}} shares worth [${{stock[2]}}] in total
+                              <form action="/sell_share" method="post">
+                                  <input type="hidden" name="symbol" value="{{stock[0]}}">
+                                  <input type="hidden" name="price" value="{{stock[3]}}">
+                                  <input class="btn button_style rounded-pill" type="submit" value="Sell Some Shares">
+                              </form>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                      </tbody>
+                  </table>
+              </div>
+        </div>
 
     </body>
 
