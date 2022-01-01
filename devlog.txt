@@ -174,3 +174,6 @@ elizaK -- 2021-12-31
         -- 2022-1-01
 0:27
 - style for buy stocks complete
+0:39
+- style for leaderboard and other people's profiles
+- DONE! with css....
