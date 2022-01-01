@@ -4,3 +4,11 @@ SoftDev
 P01 -- ArRESTed Development
 2021-12-07
 */
+
+.sell_message {
+  background-color: #C1F0EB;
+  color: black;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}

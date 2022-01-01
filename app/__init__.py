@@ -302,7 +302,7 @@ def handle_sell_share():
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
 
-    message = "you completed a transaction: " + str(error)
+    message = "You completed a transaction: " + str(error)
     return render_template('manage_stocks.html', stocks = stocks, networth = round(float(networth),2), cash = round(float(cash), 2), error= message)
 
 if __name__ == "__main__":
