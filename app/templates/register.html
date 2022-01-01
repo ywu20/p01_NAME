@@ -9,38 +9,58 @@ P01 -- The Biggest Loser
     <head>
         <title> REGISTER PAGE </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../static/css/global.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/login.css">
     </head>
 
-    <body>
-        <h1 class="header"> Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu <br>
-            Welcome, Please Register To Create An Account!</h1>
+    <body class = "bg-light">
+        <div class="text-center header">
+            <h1> <b>NAME</b></h1>
+            <h3>Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu</h3>
+        </div> 
+        
+        <div class="text-center new_user">
+            <p class="standardBlock" id="create_option"> Already have an account? <a href="{{ url_for('index') }}">Login.</a> </p>
+        </div>
 
         <!-- currently just displays register ability,
                 when user registers, for now, it will just return them to login page
                 does not connect to database yet- will have to implement later
                 will also have to implement error message when register fails- username taken, confirm password fails, etc.
         -->
-        <form action="/rAuth" method="POST" class="standardBlock">
-            <h4> Enter a new username and password below to proceed</h4>
-            <input type="text" name="username" placeholder="Username"><br>
-            <input type="password" name="password0", placeholder="Password"><br>
-            <input type="password" name="password1", placeholder="Confirm password"><br><br>
-            <input type="submit" name="sub1" value="Register">
-        </form>
-        <h4 class="standardBlock" id="create_option"> Already have an account? <a href="{{ url_for('index') }}">Login.</a> </h4>
 
-        <!-- error for when user does not put a username or password (must be at least 1 character) and presses register -->
-        {% if given|length >= 1 %}
-         <p style="color: red">*Please input a {{given}}!</p>
-        {% endif %}
+        <div class="text-center bg-white sign_in">
 
-        {% if mismatch %}
-          <p style="color:red">*Passwords don't match! Please try again!</p>
-        {% endif %}
+            <form action="/rAuth" method="POST" class="standardBlock">
+                <br> Please Register To Create An Account <br><br>
+                <!-- error for when user does not put a username or password (must be at least 1 character) and presses register -->
+                {% if given|length >= 1 %}
+                 <p class="text-white bg-danger small_label">*Please input a {{given}}!</p>
+                {% endif %}
+                {% if mismatch %}
+                  <p class="text-white bg-danger small_label">*Passwords don't match! Please try again!</p>
+                {% endif %}
+                {% if taken %}
+                    <p class="text-white bg-danger small_label">*Username is taken! Please use a different one!</p>
+                {% endif %}
+                <div class="form-group small_label text-dark">
+                    <label for="user">Username</label><br>
+                    <input id="user" type="text" name="username" placeholder="Username"><br>
+                </div>
+                <br>
+                <div class="form-group small_label text-dark">
+                    <label for="pass0">Password</label><br>
+                    <input id="pass0" type="password" name="password0" placeholder="Password"><br><br>
+                    <label for="pass1">Confirm Password</label><br>
+                    <input id="pass1" type="password" name="password1" placeholder="Confirm Password"><br><br>
+                </div>
+                <input class="btn button_style rounded-pill" type="submit" name="sub1" value="Register">
+                <br>
+            </form>
+        </div>
 
-        {% if taken %}
-            <p style="color: red">*Username is taken! Please use a different one!</p>
-        {% endif %}
+
+
     </body>
 
 </html>
