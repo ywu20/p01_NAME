@@ -5,3 +5,22 @@
 .navbar_colors {
   background: #242939;
 }
+
+.profile {
+  background: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.info {
+  color: #9C9EB0;
+}
+
+.stock {
+  color: black;
+  font-size: 20px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
