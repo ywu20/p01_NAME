@@ -167,3 +167,5 @@ elizaK -- 2021-12-31
 - style for the register page
 21:54
 - style for the navbar and added to all other pages
+22:50
+- style for the entire dashboard and lottery

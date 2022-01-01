@@ -3,8 +3,6 @@
 # P01 -- ArRESTed Development
 # 2021-12-07
 
-# 12/12 Eliza set up flask for my stock and buy sell pages using backend functions in stock.py
-
 from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for
 import user
@@ -44,12 +42,15 @@ def index():
     #meme = fun_facts.meme()
     rand_num = 0
     lottery = False
+    success = False
     if request.method == 'POST' and request.form.get("lottery") == "Lottery":
         lottery = True
         rand_num = random.randint(-100, 100)
         num_fact = fun_facts.numbers(abs(rand_num))
         user.update_cash(session['username'],rand_num)
         user.update_networth(session['username'], user.get_networth(session['username']) + rand_num)
+        if rand_num >= 0:
+            success = True
 
     return render_template('dashboard.html', username=session['username'],
                                              stocks = stocks,
@@ -59,7 +60,8 @@ def index():
                                              num_fact = num_fact,
                                              #meme = meme
                                              lottery = lottery,
-                                             rand_num = rand_num
+                                             rand_num = abs(rand_num),
+                                             success = success
                                              )
 
 

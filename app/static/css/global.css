@@ -1,3 +1,15 @@
+/*
+Team Name -- Yuqing Wu, Andrew Juang, Patrick Ging, Eliza Knapp
+SoftDev
+P01 -- ArRESTed Development
+2021-12-07
+*/
+
 * {
   font-family: Gill Sans, sans-serif;
+}
+
+.button_style {
+  background-color: #5867DD;
+  color: white;
 }
