@@ -162,3 +162,6 @@ yuqingW -- 2021-12-31 14:43
 
 elizaK -- 2021-12-31 21:09
 - did all of the css/bootstrap for the login page
+
+elizaK -- 2021-12-31 21:24
+- style for the register page
