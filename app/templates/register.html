@@ -35,13 +35,13 @@ P01 -- The Biggest Loser
                 <br> Please Register To Create An Account <br><br>
                 <!-- error for when user does not put a username or password (must be at least 1 character) and presses register -->
                 {% if given|length >= 1 %}
-                 <p class="text-white bg-danger small_label">*Please input a {{given}}!</p>
+                 <p class="text-white problem small_label">Please input a {{given}}!</p>
                 {% endif %}
                 {% if mismatch %}
-                  <p class="text-white bg-danger small_label">*Passwords don't match! Please try again!</p>
+                  <p class="text-white problem small_label">Passwords don't match! Please try again!</p>
                 {% endif %}
                 {% if taken %}
-                    <p class="text-white bg-danger small_label">*Username is taken! Please use a different one!</p>
+                    <p class="text-white problem small_label">Username is taken! Please use a different one!</p>
                 {% endif %}
                 <div class="form-group small_label text-dark">
                     <label for="user">Username</label><br>

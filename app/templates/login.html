@@ -30,11 +30,11 @@ P01 -- The Biggest Loser
             <form action="/auth" method="POST" class="standardBlock">
                 <br> Sign In <br><br>
                 {% if input == "success" %}
-                    <p class="text-white bg-success small_label">Registration successful! Please login.</p>
+                    <p class="text-dark create_success small_label">Registration successful! Please login.</p>
                 {% elif input == "bad_user" %}
-                    <p class="text-white bg-danger small_label">Username not found. Please try again!</p>
+                    <p class="text-white problem small_label">Username not found. Please try again!</p>
                 {% elif input == "bad_pass" %}
-                    <p class="text-white bg-danger small_label">Password incorrect. Please try again!</p>
+                    <p class="text-white problem small_label">Password incorrect. Please try again!</p>
                 {% endif %}
                 <div class="form-group small_label text-dark">
                     <label for="user">Username</label><br>

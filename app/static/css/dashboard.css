@@ -10,11 +10,11 @@ P01 -- ArRESTed Development
 }
 
 .navbar_colors {
-  background: #242939;
+  background-color: #242939;
 }
 
 .profile {
-  background: white;
+  background-color: white;
   width: 90%;
   margin-left: auto;
   margin-right:auto;
@@ -33,7 +33,7 @@ P01 -- ArRESTed Development
 }
 
 .lottery {
-  background: #C1F0EB;
+  background-color: #C1F0EB;
   font-size:25px;
   color: black;
   width: 40%;

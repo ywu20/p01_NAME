@@ -177,3 +177,5 @@ elizaK -- 2021-12-31
 0:39
 - style for leaderboard and other people's profiles
 - DONE! with css....
+16:19
+- fixed login message colors forgot to change yesterday

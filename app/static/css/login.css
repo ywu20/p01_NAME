@@ -25,3 +25,12 @@ P01 -- ArRESTed Development
 .small_label {
   font-size: 15px;
 }
+
+.problem {
+  background-color: #FF7376;
+
+}
+
+.create_success {
+  background-color: #C1F0EB;
+}
