@@ -18,3 +18,8 @@
 .small_label {
   font-size: 15px;
 }
+
+.button_style {
+  background-color: #5867DD;
+  color: white;
+}
