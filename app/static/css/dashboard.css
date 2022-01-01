@@ -24,3 +24,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.lottery {
+  background: #C1F0EB;
+  font-size:25px;
+  color: black;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button_style {
+  background-color: #5867DD;
+  color: white;
+}

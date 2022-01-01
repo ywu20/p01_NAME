@@ -44,7 +44,7 @@ def index():
     #meme = fun_facts.meme()
     rand_num = 0
     lottery = False
-    if request.method == 'POST' and request.form.get("lottery") == 'Lottery':
+    if request.method == 'POST' and request.form.get("lottery") == "Lottery":
         lottery = True
         rand_num = random.randint(-100, 100)
         num_fact = fun_facts.numbers(abs(rand_num))

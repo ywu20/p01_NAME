@@ -49,26 +49,26 @@ P01 -- The Biggest Loser
     </div>
 
     <body class="bg-light">
-        <br>
-        <p class="basic_blue"><b>DASHBOARD</b></p>
-        <br>
         <div class="bg-light">
             <h2>
                 {% if lottery %}
                 <!-- fun fact api doesn't work for some reason so maybe we just don't need it
-                  Fun Fact of the Day!! <br>
-                  {{fact}} <br><br>
+                    Fun Fact of the Day!! <br>
+                    {{fact}} <br><br>
                 -->
                 You got {{rand_num}}<br/>
-                  Fun Number Fact based on the absolute value of the amout you got!! <br>
-                  {{num_fact}}
-                  <br/><br/>
-                  <form action = "/" method = "POST">
+                Fun Number Fact based on the absolute value of the amout you got!! <br>
+                {{num_fact}}
+                <br/><br/>
+                <form action = "/" method = "POST">
                     <input type = "submit" value = "Back">
-                  </form>
-                  {%else%}
+                </form>
+                {%else%}
+                <br>
+                <h1 class="basic_blue text-center"><b>DASHBOARD</b></h1>
+                <br>
                   <div class="profile">
-                      <h1 class="header basic_blue"> <b>{{username}}</b></h1>
+                      <h1 class="header text-black"> <b>{{username}}</b></h1>
                       <h3 class="info">
                           networth: ${{networth}}<br>
                           cash: ${{cash}}
@@ -76,7 +76,7 @@ P01 -- The Biggest Loser
                       <div class="stock text-center">
                           <table class="table">
                               <thead>
-                                  <th scope="col">Stocks</th>
+                                  <th class= "basic_blue" scope="col">Stocks</th>
                               </thead>
                               <tbody>
                                   {% for stock in stocks%}
@@ -90,12 +90,16 @@ P01 -- The Biggest Loser
                             </table>
                         </div>
                     </div>
+                    <br><br>
 
-                    <br>
-                    <form action = "/" method = "POST">
-                      <p> Lottery! </p>
-                      <input type = "submit" value = "Lottery" name = "lottery">
-                    </form>
+                    <div class="lottery text-center">
+                        <br>
+                        <form action = "/" method = "POST">
+                          <p><b>FEELING LUCKY? PLAY THE LOTTERY</b></p>
+                          <input class="btn button_style rounded-pill" type = "submit" value = "Lottery" name = "lottery">
+                        </form>
+                        <br>
+                    </div>
                   {% endif %}
                 <!--
                 Fun Meme of the Day!
