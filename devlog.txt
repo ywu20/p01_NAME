@@ -170,4 +170,7 @@ elizaK -- 2021-12-31
 22:50
 - style for the entire dashboard and lottery
 23:31
-- style for sell stocks done
+- style for sell stocks and manage stocks done
+        -- 2022-1-01
+0:27
+- style for buy stocks complete

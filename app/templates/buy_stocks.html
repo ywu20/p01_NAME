@@ -85,21 +85,27 @@ P01 -- The Biggest Loser
         {% endif %}
     
         {% if stock %}
-            <h3>Here is: {{search}}</h3>
-            <ul>
-                <li>Name: {{stock_name}}</li>
-                <li>Price: {{stock_price}}</li>
-                <li><a href={{stock_website}}>Learn More</a></li>
-            </ul>
+        <br><br>
+        <div class="text-center">
+            <h1 class="basic_blue"><b>{{search}}</b></h1>
+            <h3>
+                Name: {{stock_name}}<br>
+                Price: {{stock_price}}<br>
+                <a href={{stock_website}}>Learn More</a><br>
+            </h3>
+            <br>
+        </div>
         {% endif %}
     
         {% if img|length > 1 %}
-            <h3>Graph of {{search}} Stock:</h3><br>
+        <div class="text-center">
             <img src={{img}}>
+        </div>
         {% endif %}
     
         <br>
         {% if stock %}
+            <h1 class="text-center basic_blue"><b>More Info!</b></h1>
             {% for article in news %}
                 <div class="card">
                     <div class="card-body">
