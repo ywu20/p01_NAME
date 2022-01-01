@@ -11,6 +11,7 @@ P01 -- The Biggest Loser
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../static/css/global.css">
         <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/manage_stocks.css">    
     </head>
 
     <!-- NAVBAR -->
@@ -48,49 +49,65 @@ P01 -- The Biggest Loser
         </nav>
     </div>
 
-    <h1>Buy Stocks</h1>
-
-    <h1>{{error}}</h1>
-    <form action="/search" method="post">
-        <label for="search">Search for a stock using symbol:</label><br>
-        <input type="text" name="search">
-        <input type="submit">
-    </form>
-    <br>
-
-    {% if stock %}
-        <h3>Here is: {{search}}</h3>
-        <ul>
-            <li>Name: {{stock_name}}</li>
-            <li>Price: {{stock_price}}</li>
-            <li><a href={{stock_website}}>Learn More</a></li>
-        </ul>
-    {% endif %}
-
-    {% if img|length > 1 %}
-        <h3>Graph of {{search}} Stock:</h3><br>
-        <img src={{img}}>
-    {% endif %}
-
-    <br>
-    {% if stock and not isCrypto%}
-        <form action="/buy_share" method="post">
-            <label for="num_shares">How many shares would you like?</label>
-            <input type="text" name="num_shares">
-            <input type="hidden" name="symbol" value="{{symbol}}">
-            <input type="hidden" name="price" value="{{stock_price}}">
-            <input type="submit" value="Buy Shares">
-        </form>
-    {% endif %}
-
-    {% if stock %}
-        {% for article in news %}
-            <div class="card">
-                <div class="card-body">
-                    <a href="{{article['url']}}"> <h5 class="card-title">{{article["title"]}}</h5> </a>
-                    <p class="card-text">{{article["description"]}}</p>
+    <body class="bg-light">
+        <br>
+        <div class="text-center">
+            <h1 class="basic_blue"><b>BUY STOCKS</b></h1>
+            <p class="reminder">Buy stocks that you think will do poorly!</p>
+        </div>    
+        <br>
+        <h2 class="sell_message">{{error}}</h2>
+        
+        <div class="profile text-center buy_size">
+            <form action="/search" method="post">
+                <div>
+                    <label for="search">Search for a stock using symbol:</label><br>
+                    <input type="text" name="search">
                 </div>
+                <input class="btn button_style rounded-pill" type="submit">
+            </form>
+        </div>
+        <br>
+    
+        {% if stock and not isCrypto%}
+            <div class="profile text-center buy_size">
+                <p>Below, you can find information on your stock</p>
+                <form action="/buy_share" method="post">
+                    <div class="form-group">
+                        <label for="num_shares">How many shares would you like?</label><br>
+                        <input type="text" name="num_shares">
+                    </div>
+                    <input type="hidden" name="symbol" value="{{symbol}}">
+                    <input type="hidden" name="price" value="{{stock_price}}">
+                    <input class="btn button_style rounded-pill" type="submit" value="Buy Shares">
+                </form>
             </div>
-        {% endfor %}
-    {% endif %}
+        {% endif %}
+    
+        {% if stock %}
+            <h3>Here is: {{search}}</h3>
+            <ul>
+                <li>Name: {{stock_name}}</li>
+                <li>Price: {{stock_price}}</li>
+                <li><a href={{stock_website}}>Learn More</a></li>
+            </ul>
+        {% endif %}
+    
+        {% if img|length > 1 %}
+            <h3>Graph of {{search}} Stock:</h3><br>
+            <img src={{img}}>
+        {% endif %}
+    
+        <br>
+        {% if stock %}
+            {% for article in news %}
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{article['url']}}"> <h5 class="card-title">{{article["title"]}}</h5> </a>
+                        <p class="card-text">{{article["description"]}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </body>
 </html>
