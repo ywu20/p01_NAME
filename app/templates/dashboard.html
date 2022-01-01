@@ -57,12 +57,12 @@ P01 -- The Biggest Loser
                     {% if success %} 
                         <div class="gain_money">
                             You won ${{rand_num}}<br>
-                            Enjoy a fun fact- {{num_fact}}
+                            We're sorry! But you can still enjoy a fun fact- {{num_fact}}
                         </div>
                     {% else%}
                         <div class="lose_money">
                             You lost ${{rand_num}}<br>
-                            We're sorry! But you can still enjoy a fun fact- {{num_fact}}
+                            Enjoy a fun fact- {{num_fact}}
                         </div>
                     {% endif %}
                     <br>
@@ -74,7 +74,10 @@ P01 -- The Biggest Loser
                 </div>
                 {%else%}
                 <br>
-                <h1 class="basic_blue text-center"><b>DASHBOARD</b></h1>
+                <div class="text-center">
+                    <h1 class="basic_blue"><b>DASHBOARD</b></h1>
+                    <p class="reminder">Remember, the goal is to get to $0, so losing money is good!</p>
+                </div>
                 <br>
                   <div class="profile">
                       <h1 class="header text-black"> <b>{{username}}</b></h1>
