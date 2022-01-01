@@ -9,25 +9,46 @@ P01 -- The Biggest Loser
     <head>
         <title> LOGIN PAGE </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../static/css/global.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+
     </head>
 
-    <body>
-        <h1 class="header"> Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu </h1>
+    <body class = "bg-light">
+    
+        <div class="text-center header">
+            <h1> <b>NAME</b></h1>
+            <h3>Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu</h3>
+        </div>
 
-        <form action="/auth" method="POST" class="standardBlock">
-            <h4> Enter your username and password below to proceed</h4>
-            <input type="text" name="username" placeholder="Username"><br>
-            <input type="password" name="password" placeholder="Password"><br><br>
-            <input type="submit" name="sub1" value="Login">
-        </form>
-        <h4 class="standardBlock" id="create_option"> New user? <a href="{{ url_for('register') }}">Create an account.</a> </h4>
-        {% if input == "success" %}
-            <p style="color:green">*Registration successful! Please login.</p>
-        {% elif input == "bad_user" %}
-            <p style="color:red">*Username not found. Please try again!</p>
-        {% elif input == "bad_pass" %}
-            <p style="color:red">*Password incorrect. Please try again!</p>
-        {% endif %}<br>
+        <div class="text-center new_user">
+            <p class="standardBlock" id="create_option"> New user? <a href="{{ url_for('register') }}">Create Account</a> </p>
+        </div>
+
+        <div class="text-center bg-white sign_in">
+
+            <form action="/auth" method="POST" class="standardBlock">
+                <br> Sign In <br><br>
+                {% if input == "success" %}
+                    <p class="text-white bg-success small_label">Registration successful! Please login.</p>
+                {% elif input == "bad_user" %}
+                    <p class="text-white bg-danger small_label">Username not found. Please try again!</p>
+                {% elif input == "bad_pass" %}
+                    <p class="text-white bg-danger small_label">Password incorrect. Please try again!</p>
+                {% endif %}
+                <div class="form-group small_label text-dark">
+                    <label for="user">Username</label><br>
+                    <input id="user" type="text" name="username" placeholder="Username"><br>
+                </div>
+                <br>
+                <div class="form-group small_label text-dark">
+                    <label for="pass">Password</label><br>
+                    <input id="pass" type="password" name="password" placeholder="Password"><br><br>
+                </div>
+                <br>
+                <input class="btn btn-primary" type="submit" name="sub1" value="Login">
+            </form>
+        </div>
 
     </body>
 

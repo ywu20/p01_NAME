@@ -60,15 +60,15 @@ P01 -- The Biggest Loser
               {%else%}
               <h1 class="header"> {{username}}'s Dashboard </h1>
               <h3>
-                  networth: {{networth}}
-                  cash: {{cash}}
+                  networth: ${{networth}}
+                  cash: ${{cash}}
               </h3>
               {% for stock in stocks%}
-                  {{stock[0]}}, {{stock[1]}}, {{stock[2]}}<br>
+                  <b>{{stock[0]}}</b>: {{stock[1]}} shares worth ${{stock[2]}} in total<br>
               {%endfor%}
               <br>
                 <form action = "/" method = "POST">
-                  <p> Lottery ! </p>
+                  <p> Lottery! </p>
                   <input type = "submit" value = "Lottery" name = "lottery">
                 </form>
 
