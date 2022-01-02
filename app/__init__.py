@@ -61,7 +61,8 @@ def index():
                                              #meme = meme
                                              lottery = lottery,
                                              rand_num = abs(rand_num),
-                                             success = success
+                                             success = success,
+                                             isBroke = user.get_networth(session['username']) < 100  #if they're broke we'll give them the option to reset :)
                                              )
 
 
@@ -90,12 +91,27 @@ def authenticate():
         return render_template('login.html', input="bad_user")
 
 
+
+@app.route("/resetAccount", methods=["GET", "POST"])
+def resetAccount():
+    if 'username' not in session:
+        return render_template('login.html')
+
+    for item in stock.get_stock(session['username']):
+        stock.buy_sell(session['username'], item[1], item[2]) # selling stocks
+
+    user.update_cash(session['username'], -1 * user.get_cash(session['username'])) #clearing cash
+
+    user.update_cash(session['username'], 10000) #adding 10k
+
+    return redirect("/")
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     ''' Displays register page '''
 
     return render_template('register.html')
-
 
 @app.route("/rAuth", methods =['GET', 'POST'])
 def rAuthenticate():

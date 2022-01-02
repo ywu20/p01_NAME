@@ -79,6 +79,10 @@ P01 -- The Biggest Loser
                     <p class="reminder">Remember, the goal is to get to $0, so losing money is good!</p>
                 </div>
                 <br>
+                    {% if isBroke %}
+                        <div class="text-center"><a href="/resetAccount" class="btn button_style rounded-pill">Reset your account!</a></div>
+                    {% endif %}
+                <br>
                   <div class="profile">
                       <h1 class="header text-black"> <b>{{username}}</b></h1>
                       <h3 class="info">

@@ -179,3 +179,7 @@ elizaK -- 2021-12-31
 - DONE! with css....
 16:19
 - fixed login message colors forgot to change yesterday
+
+PatrickG -- 2021-01-02 12:35
+
+- implementing the reset feature, made some minor changes to templates and __init__.py
