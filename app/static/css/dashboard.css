@@ -17,11 +17,18 @@ P01 -- ArRESTed Development
   background-color: white;
   width: 90%;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
 }
 
 .info {
   color: #9C9EB0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header  {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .stock {

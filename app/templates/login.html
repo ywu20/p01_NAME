@@ -15,14 +15,10 @@ P01 -- The Biggest Loser
     </head>
 
     <body class = "bg-light">
-    
+
         <div class="text-center header">
             <h1> <b>THE BIGGEST LOSER</b></h1>
             <h3>Name -- Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu</h3>
-        </div>
-
-        <div class="text-center new_user">
-            <p class="standardBlock" id="create_option"> New user? <a href="{{ url_for('register') }}">Create Account</a> </p>
         </div>
 
         <div class="text-center bg-white sign_in">
@@ -48,6 +44,11 @@ P01 -- The Biggest Loser
                 <br>
                 <input class="btn button_style rounded-pill" type="submit" name="sub1" value="Login">
             </form>
+            <br>
+        </div>
+
+        <div class="text-center new_user">
+            <p class="standardBlock" id="create_option"> New user? <a href="{{ url_for('register') }}">Create Account</a> </p>
         </div>
 
     </body>
