@@ -161,24 +161,15 @@ yuqingW -- 2021-12-31 14:43
  - Add others' profile html
 
 elizaK -- 2021-12-31 
-21:09
-- did all of the css/bootstrap for the login page
-21:24
-- style for the register page
-21:54
-- style for the navbar and added to all other pages
-22:50
-- style for the entire dashboard and lottery
-23:31
-- style for sell stocks and manage stocks done
+21:09 - did all of the css/bootstrap for the login page
+21:24 - style for the register page
+21:54 - style for the navbar and added to all other pages
+22:50 - style for the entire dashboard and lottery
+23:31 - style for sell stocks and manage stocks done
         -- 2022-1-01
-0:27
-- style for buy stocks complete
-0:39
-- style for leaderboard and other people's profiles
-- DONE! with css....
-16:19
-- fixed login message colors forgot to change yesterday
+0:27 - style for buy stocks complete
+0:39 - style for leaderboard and other people's profiles
+16:19 - fixed login message colors forgot to change yesterday
 
 PatrickG -- 2021-01-02 12:35
 
