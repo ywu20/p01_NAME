@@ -5,29 +5,7 @@
 
 import yfinance as yf
 
-
-def update_data(stock):
-    """
-    Gets the newest data for a stock
-        parameter (str): symbol / name (depending on which one the apis use
-               to identify the stock )of the stock we want data for.
-        returns (dictionary): {"name / symbol" : <str>, "price" : <double>, "graph" : <str file name>...}
-                              A dictionary of the information we want.
-    """
-
-    # Do not put a lot of code here, should mainly be calling helper functions
-
-    # should kind of work on something like this:
-    dict = pull_data(stock)
-    #img = plot(dict[list_of_prices_or_whatever])
-    #file_name = "foo.jpg"
-    #save_to_file(img, file_name)
-    return dict
-
-    # if apis have graphs and we don't need to plot things ourselves then we
-    # can just put all the codes from pull_data() here and no helper functions needed
-
-def pull_data(stockName : str):
+def update_data(stockName : str):
     '''
     pull_data
 
@@ -56,7 +34,6 @@ def pull_data(stockName : str):
         return {}
     else:
         #some properties of it, will update as needed
-        print(type(stockDiv[0]))
         return {
         "officialName" : stockInfo["longName"],
         "price" : stockInfo["currentPrice"],
@@ -65,4 +42,3 @@ def pull_data(stockName : str):
         "description": stockInfo["longBusinessSummary"],
 
         }
-

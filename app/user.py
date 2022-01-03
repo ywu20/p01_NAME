@@ -138,22 +138,3 @@ def fetch_leaderboard():
     leaderboard.sort()
 
     return leaderboard
-
-
-# Functions to be done later .  . .
-# def leaderboard():
-#
-# def percent_lost():
-
-
-# For testing purposes #################
-#create_db()
-#create_user("andrew", "01", 1000, 1000)
-#print(get_cash("andrew"))
-#print(get_networth("andrew"))
-#if update_cash("andrew", -100000.0):
-#    print(get_cash("andrew"))
-#print(get_cash("andrew"))
-#update_networth("andrew",10)
-#print(get_networth("andrew"))
-# fetch_leaderboard()
