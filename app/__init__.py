@@ -284,12 +284,14 @@ def buy_share():
     if (request.method == "POST"):
         requested_shares = request.form.get("num_shares")
         price = request.form.get("price")
-        print(price)
         stock_symbol = request.form.get("symbol")
-        print(stock_symbol)
 
     # change_price = float(price) * int(requested_shares)
-    error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
+    error=""
+    if (int(requested_shares) <= 0):
+        error = "Share number cannot be less than or equal to 0"
+    else:
+        error = stock.buy_sell(session['username'], str(stock_symbol), int(requested_shares), float(price))
 
     return render_template("buy_stocks.html", error=str(error))
 
@@ -311,14 +313,19 @@ def handle_sell_share():
     THEN- there's a different function that takes the number of shares
     bought and handles it (stock.buy_sell)
     '''
-    # if the amount bought is too big then return an error in the response!- should be handled in the actual function
-    error = stock.buy_sell(session['username'], request.form.get("symbol"), -1 * int(request.form.get("num_shares")), float(request.form.get("price")))
+    shares = int(request.form.get("num_shares"))
+    error = ""
+    if (shares <= 0):
+        error = "Share number cannot be less than or equal to 0"
+    else:
+        error = stock.buy_sell(session['username'], request.form.get("symbol"), -1 * shares, float(request.form.get("price")))
     # update ALL of the data again just to make sure!
     stocks = stock.get_stock(session['username'])
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
 
     message = "You completed a transaction: " + str(error)
+
     return render_template('manage_stocks.html', stocks = stocks, networth = round(float(networth),2), cash = round(float(cash), 2), error= message)
 
 if __name__ == "__main__":
