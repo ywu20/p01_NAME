@@ -14,6 +14,7 @@ This is a stock game where the user tries to lose all of its money! The user get
 ```
 python3 -m venv env
 ```
+- Activates the virtual environment
 ```
 source env/bin/activate
 ```
