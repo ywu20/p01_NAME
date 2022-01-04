@@ -33,7 +33,8 @@ def getOHLC(ticker : str, days: int = 365):
 
 	#please don't ask this was a nightmare to write lmao
 	df = pd.DataFrame(
-		[[datetime.fromtimestamp(int(str(x[0])[:-3])).strftime('%Y-%m-%d'), x[1], x[2], x[3], x[4]] for x in json.loads(r.get(url).text)], 
+		[[datetime.fromtimestamp(int(str(x[0])[:-3])).strftime('%Y-%m-%d'), x[1], x[2], x[3], x[4]] for x in json.loads(r.get(url).text)][::-1], 
+		#this is to solve a minor issue in graphs I ntoiced ^^^^^^^^^^
 		columns = ["Date", "Open", "High", "Low", "Close"]
 		)[::-1]
 	df.index = pd.DatetimeIndex(df['Date'])

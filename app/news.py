@@ -19,10 +19,10 @@ def grabByTicker(symbol : str):
 
 	url = "https://gnews.io/api/v4/search?"
 
-	f = open("keys/key_news.txt", "r")
-	key = f.read()[0:-1]
-	f.close()
+	with open("keys/key_news.txt", "r") as f:
+		key = str(f.readline())
 
+	
 	args = {
 		"q": symbol,
 		"token" : key,
