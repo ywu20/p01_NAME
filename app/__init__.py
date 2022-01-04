@@ -240,23 +240,47 @@ def search():
         if info.get("error") is not None:
             return render_template("buy_stocks.html", stock=False, error="no such stock")
 
+        symbol = ""
+        stock_price = ""
+        stock_name = ""
+        stock_website = ""
+        
+        try:
+            symbol = info["symbol"]
+            stock_price = info["market_data"]['current_price']['usd']
+            stock_name = info['name']
+            stock_website= f'https://www.coingecko.com/en/coins/{query}'
+        except:
+            return render_template("buy_stocks.html", stock=False, error="no such info on that stock")
+        
         else:
             return render_template("buy_stocks.html",
-                symbol=info["symbol"],
+                symbol=symbol,
                 stock=True,
-                stock_price=info["market_data"]['current_price']['usd'],
-                stock_name= info['name'],
-                stock_website= f'https://www.coingecko.com/en/coins/{query}',
+                stock_price=stock_price,
+                stock_name=stock_name,
+                stock_website= stock_website,
                 search = query,
                 img = cryptoData.getOHLC(query),
                 isCrypto=True,
                 news=news.grabByTicker(query))
     # get image href
-    imghref = graph.get_graph_href(query)
+    try:
+        imghref = graph.get_graph_href(query)
+    except: 
+        print("did not find graph") # just in case
 
-    name = info['officialName']
-    price = info['price']
-    website = info['website']
+    name = ""
+    price = ""
+    website = ""
+
+    try:
+        name = info['officialName']
+        price = info['price']
+        website = info['website']
+    except:
+        render_template("buy_stocks.html", stock = False, error= "stock error")
+
 
     return render_template("buy_stocks.html", symbol=query,
                                               stock=True,
