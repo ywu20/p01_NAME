@@ -174,3 +174,7 @@ elizaK -- 2021-12-31
 PatrickG -- 2021-01-02 12:35
 
 - implementing the reset feature, made some minor changes to templates and __init__.py
+
+Patrick G -- 2021-01-01 19:46
+- implemented custom key 
+- fixed cryptoData graphing function

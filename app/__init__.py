@@ -37,9 +37,7 @@ def index():
     networth = user.get_networth(session['username'])
     cash = user.get_cash(session['username'])
 
-    fact = fun_facts.get_fact()
-    num_fact = fun_facts.numbers(int(cash) % 100)
-    #meme = fun_facts.meme()
+    num_fact = ""
     rand_num = 0
     lottery = False
     success = False
@@ -56,9 +54,7 @@ def index():
                                              stocks = stocks,
                                              networth = round(float(networth),2),
                                              cash = round(float(cash),2),
-                                             fact = fact,
                                              num_fact = num_fact,
-                                             #meme = meme
                                              lottery = lottery,
                                              rand_num = abs(rand_num),
                                              success = success,
@@ -153,7 +149,6 @@ def rAuthenticate():
 def dashboard(username):
     ''' Displays currently logged in user's dashboard '''
    # Renders response if there is a user logged in, else render login page
-    print("hellos")
     stocks = stock.get_stock(username)
     networth = user.get_networth(username)
     cash = user.get_cash(username)
@@ -236,7 +231,7 @@ def search():
         query = request.form.get("search").lower()
 
 
-    info = api.pull_data(query)
+    info = api.update_data(query)
 
     if (not info):
         #two possibilities, it's a cryptocurrency or it's something that we don't have

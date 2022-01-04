@@ -18,7 +18,6 @@ def create_db():
 
     c.execute("CREATE TABLE IF NOT EXISTS stock_info (user TEXT, stock TEXT, shares INTEGER);")
     db.commit()
-    #db.close()
 
 def buy_sell(username, stock, amount, price_one):
     """
@@ -56,14 +55,12 @@ def buy_sell(username, stock, amount, price_one):
     if (exist == []):
         # if stock buying does not exist, add to database
         c.execute("INSERT INTO stock_info VALUES(?,?,?)", (username, stock, amount))
-        print("Stock "+stock+ " added.")
 
     else:
         # if exist add amount
         # get existing shares
         c.execute("SELECT shares FROM stock_info WHERE user = :user AND stock = :stock", dict)
         shares = c.fetchall()
-        # print(shares)
         dict["shares"] = shares[0][0] + amount
         c.execute("UPDATE stock_info SET shares = :shares WHERE stock = :stock AND user = :user", dict)
     # if stock selling is 0, delete from database
@@ -73,10 +70,8 @@ def buy_sell(username, stock, amount, price_one):
         return "Does not have enough shares to sell stocks"
     if (shares[0][0] == 0):
         c.execute("DELETE FROM stock_info WHERE user=:user AND stock = :stock", dict)
-        print("stock "+stock+" deleted from database because all shares are sold")
 
     db.commit()
-    #calculate_networth(username) because we are not displaying stocks immediately we can just rely on that every time we click on manage stocks the info is updated. Speed.
     return "Success!"
 
 def calculate_networth(username, stocks):
@@ -91,13 +86,11 @@ def calculate_networth(username, stocks):
     networth = user.get_cash(username)
     for i in stocks:
         networth+= i[2]
-    print(networth)
+
     # update networth for user by calling update_networth in user
     user.update_networth(username,networth)
     return float(networth)
 
-
-    return "Success"
 
 def get_stock(username):
     """
@@ -118,18 +111,8 @@ def get_stock(username):
         li.append(var * li[1])
         li.append(var)
         output_list.append(li)
-    #db.close()
     calculate_networth(username, output_list)
     return output_list
-
-# for testing ########
-#create_db()
-#buy_sell("andrew", "AAPL", 10)
-#buy_sell("andrew", "GOOG", 10)
-#buy_sell("andrew", "AMZN", 10)
-
-#get_stock("andrew")
-#calculate_networth("andrew")
 
 def get_shares_of_stock(username, stock):
     '''
