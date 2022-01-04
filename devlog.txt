@@ -126,7 +126,6 @@ elizaK -- 2021-12-21 9:19
 - did the fun facts api
 - got all the facts to render on the dashboard
 
-
 patrickG -- 2021-12-21 19:21
   - adding in news api
   - working on the cryptocurrency data
@@ -147,7 +146,7 @@ patrickG -- 2021-12-30 15:09
  - implementing the graph for it as well ie: ravencoin
  - more to be implementing on the news
  
- yuqingW -- 2021-12-31 12:36
+yuqingW -- 2021-12-31 12:36
  - added lottery features
 
 patrickG -- 2021-12-31 14:30
@@ -160,21 +159,24 @@ patrickG -- 2021-12-31 15:42
 yuqingW -- 2021-12-31 14:43
  - Add others' profile html
 
-elizaK -- 2021-12-31 
-21:09 - did all of the css/bootstrap for the login page
-21:24 - style for the register page
-21:54 - style for the navbar and added to all other pages
-22:50 - style for the entire dashboard and lottery
-23:31 - style for sell stocks and manage stocks done
-        -- 2022-1-01
-0:27 - style for buy stocks complete
-0:39 - style for leaderboard and other people's profiles
-16:19 - fixed login message colors forgot to change yesterday
+elizaK -- 2021-12-31 23:31
+- did all of the css/bootstrap for the login page
+- style for the register page
+- style for the navbar and added to all other pages
+- style for the entire dashboard and lottery
+- style for sell stocks and manage stocks done
 
-PatrickG -- 2021-01-02 12:35
+elizaK -- 2022-01-01 16:19
+- style for buy stocks complete
+- style for leaderboard and other people's profiles
+- fixed login message colors forgot to change yesterday
 
+PatrickG -- 2022-01-02 12:35
 - implementing the reset feature, made some minor changes to templates and __init__.py
 
-Patrick G -- 2021-01-01 19:46
+Patrick G -- 2022-01-01 19:46
 - implemented custom key 
 - fixed cryptoData graphing function
+
+yuqingW -- 2022-01-04 9:01
+- v2 design doc matches what's on the site.
