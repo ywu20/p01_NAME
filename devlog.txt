@@ -174,9 +174,12 @@ elizaK -- 2022-01-01 16:19
 PatrickG -- 2022-01-02 12:35
 - implementing the reset feature, made some minor changes to templates and __init__.py
 
-Patrick G -- 2022-01-01 19:46
+PatrickG-- 2022-01-01 19:46
 - implemented custom key 
 - fixed cryptoData graphing function
 
 yuqingW -- 2022-01-04 9:01
 - v2 design doc matches what's on the site.
+
+andrewJ -- 2022-01-04 9:01
+- fix minor errors + added try catch blocks
