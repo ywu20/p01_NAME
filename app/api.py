@@ -27,18 +27,19 @@ def update_data(stockName : str):
     except:
         return {}
 
-    if stockInfo.get("regularMarketPrice") is None:
-        #the wrapper api will have @ none
-        #if the ticker doesn't exist.
-        #might update in the future?
+    try: 
+        if stockInfo.get("regularMarketPrice") is None:
+            #the wrapper api will have @ none
+            #if the ticker doesn't exist.
+            #might update in the future?
+            return {}
+        else:
+            #some properties of it, will update as needed
+            return {
+            "officialName" : stockInfo["longName"],
+            "price" : stockInfo["currentPrice"],
+            "website": stockInfo["website"],
+            "sector" : stockInfo["sector"],
+            "description": stockInfo["longBusinessSummary"]}
+    except:
         return {}
-    else:
-        #some properties of it, will update as needed
-        return {
-        "officialName" : stockInfo["longName"],
-        "price" : stockInfo["currentPrice"],
-        "website": stockInfo["website"],
-        "sector" : stockInfo["sector"],
-        "description": stockInfo["longBusinessSummary"],
-
-        }
