@@ -228,7 +228,7 @@ def search():
         return redirect("/buy_stocks")
 
     if (request.method == "POST"):
-        query = request.form.get("search")
+        query = request.form.get("search").lower()
 
 
     info = api.update_data(query)
