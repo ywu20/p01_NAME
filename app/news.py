@@ -16,16 +16,17 @@ def grabByTicker(symbol : str):
 	'publishedAt': '2021-07-07T14:16:18Z',
 	'source': {'name': 'Business Insider', 'url': 'https://markets.businessinsider.com'}}
 	'''
-
 	url = "https://gnews.io/api/v4/search?"
+	try:
+		with open("keys/key_news.txt", "r") as f:
+			key = str(f.readline())
 
-	with open("keys/key_news.txt", "r") as f:
-		key = str(f.readline())
 
-	
-	args = {
-		"q": symbol,
-		"token" : key,
-		"lang": "en"}
+		args = {
+			"q": symbol,
+			"token" : key,
+			"lang": "en"}
 
-	return json.loads(r.get(url, params=args).text)["articles"]
+		return json.loads(r.get(url, params=args).text)["articles"]
+	except:
+		return []
