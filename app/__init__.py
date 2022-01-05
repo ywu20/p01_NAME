@@ -236,15 +236,17 @@ def search():
     if (not info):
         #two possibilities, it's a cryptocurrency or it's something that we don't have
         info = cryptoData.getTodayInfo(query)
-
-        if info.get("error") is not None:
-            return render_template("buy_stocks.html", stock=False, error="no such stock")
+        try:
+            if info.get("error") is not None:
+                return render_template("buy_stocks.html", stock=False, error="no such stock")
+        except:
+            return render_template("buy_stocks.html", stock=False, error="no stock avaliable at this time")
 
         symbol = ""
         stock_price = ""
         stock_name = ""
         stock_website = ""
-        
+
         try:
             symbol = info["symbol"]
             stock_price = info["market_data"]['current_price']['usd']
@@ -252,7 +254,7 @@ def search():
             stock_website= f'https://www.coingecko.com/en/coins/{query}'
         except:
             return render_template("buy_stocks.html", stock=False, error="no such info on that stock")
-        
+
         else:
             return render_template("buy_stocks.html",
                 symbol=symbol,
@@ -267,7 +269,7 @@ def search():
     # get image href
     try:
         imghref = graph.get_graph_href(query)
-    except: 
+    except:
         print("did not find graph") # just in case
 
     name = ""
