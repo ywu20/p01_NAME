@@ -11,8 +11,8 @@ This is a stock game where the user tries to lose all of its money! The user get
 
 ## Link to API Cards
 - numbers API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_NumbersAPI.md
-- coin gecko API: 
-- gnews API: 
+- coin gecko API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_coingecko.md
+- gnews API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_gnews.md
 
 ## Launch Codes 
 - Install virtual environment <br>
