@@ -1,4 +1,3 @@
 This is the directory to put the keys.
-Create a file named key_news.txt
-Copy the api key into that file (sent in group chat)
-Then the python code for news should work
+Should store key_news.txt which contains api keys locally
+
