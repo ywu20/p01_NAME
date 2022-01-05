@@ -21,7 +21,6 @@ def grabByTicker(symbol : str):
 		with open("keys/key_news.txt", "r") as f:
 			key = str(f.readline())
 
-
 		args = {
 			"q": symbol,
 			"token" : key,

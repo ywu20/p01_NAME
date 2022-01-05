@@ -14,9 +14,11 @@ def getTodayInfo(ticker: str ):
 	ticker, str: the name of the cryptocuyrrency
 	'''
 	url = f'https://api.coingecko.com/api/v3/coins/{ticker}/history?date={datetime.now().strftime("%d-%m-%Y")}'
-
-	response = json.loads(r.get(url).text)
-
+	response = ""
+	try:
+		response = json.loads(r.get(url).text)
+	except:
+		print("crypto api error")
 	return response
 
 def getOHLC(ticker : str, days: int = 365):
