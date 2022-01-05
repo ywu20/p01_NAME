@@ -3,11 +3,16 @@
 ## Roster with roles 
 Yuqing Wu -  PM, stock backend sql  
 Patrick Ging -  api  
-Eliza Knapp -  flask  
-Andrew Juang -  api graphing, user backend sql  
+Eliza Knapp -  flask, front end
+Andrew Juang -  api graphing, user backend sql
 
 ## Description 
 This is a stock game where the user tries to lose all of its money! The user gets a certain amount of cash at the start, then they can buy and sell stocks with those cash. The user can see what stocks is in portfolio and check the leaderboard to see how well he/she's doing. The user can also see other people's stock portfolio to see what stocks other people own. We use the apis to get information about the stocks and display them on the page to help the user better choose their stocks. 
+
+## Link to API Cards
+- numbers API: https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_NumbersAPI.md
+- coin gecko API: 
+- gnews API: 
 
 ## Launch Codes 
 - Install virtual environment <br>
