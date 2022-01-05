@@ -3,7 +3,7 @@
 ## Roster with roles 
 Yuqing Wu -  PM, stock backend sql  
 Patrick Ging -  api  
-Eliza Knapp -  flask, front end
+Eliza Knapp -  flask, front end  
 Andrew Juang -  api graphing, user backend sql
 
 ## Description 
